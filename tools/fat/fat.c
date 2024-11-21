@@ -3,6 +3,7 @@
 #include<stdbool.h>
 #include<stdlib.h>
 #include<string.h>
+#include<ctype.h>
 
 typedef struct {
     uint8_t boot_jmp_instruct[3];
@@ -47,6 +48,7 @@ typedef struct {
 boot_sector g_bs;
 uint8_t* g_fat=NULL;
 dir_entry* g_rootdir=NULL;  //array of directory entries
+uint32_t g_rootdir_end;
 
 bool read_boot_sector(FILE* disk){
     return fread(&g_bs, sizeof(g_bs), 1, disk) > 0;
@@ -72,6 +74,7 @@ bool read_root_dir(FILE* disk){
         sectors++;
     }
 
+    g_rootdir_end=sectors+lba;
     g_rootdir=(dir_entry*)malloc(sectors*g_bs.bytes_per_sector);
     return read_sectors(disk, lba, sectors, g_rootdir);
 }
@@ -83,6 +86,25 @@ dir_entry* find_file(const char* name){
         }
     }
     return NULL;
+}
+
+bool read_file(dir_entry* file_entry, FILE* disk, uint8_t* out_buf){
+    uint16_t current_cluster=file_entry->first_cluster_low;
+    bool ok=true;
+
+    do {
+        uint32_t lba=g_rootdir_end+(current_cluster-2)*g_bs.sectors_per_cluster;
+        ok=ok&&read_sectors(disk, lba, g_bs.sectors_per_cluster, out_buf);
+        out_buf+=g_bs.sectors_per_cluster*g_bs.bytes_per_sector;
+
+        uint32_t fat_index=current_cluster*3/2;
+        if(!current_cluster%2){
+            current_cluster=(*(uint16_t*)(g_fat+fat_index)) & 0x0FFF;
+        }else{
+            current_cluster=(*(uint16_t*)(g_fat+fat_index))>>4;
+        }
+
+    }while(ok&&current_cluster<0x0FF8);
 }
 
 int main(int argc, char** argv){
@@ -125,6 +147,24 @@ int main(int argc, char** argv){
         free(g_rootdir);
         return -5;
     }
+
+    uint8_t* buffer=(uint8_t*)malloc(file_entry->size+g_bs.bytes_per_sector);
+    if(!read_file(file_entry, disk, buffer)){
+        fprintf(stderr, "Could not read file %s\n!", argv[2]);
+        free(buffer);
+        free(g_fat);
+        free(g_rootdir);
+        return -6;
+    }
+
+    for(size_t i=0; i<file_entry->size; i++){
+        if(isprint(buffer[i])){
+            fputc(buffer[i], stdout);
+        }else{
+            printf("<%02x", buffer[i]);
+        }
+    }
+    printf("\n");
 
     free(g_fat);
     free(g_rootdir);
