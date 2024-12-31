@@ -1,0 +1,96 @@
+Open Watcom Linker Version 2.0 beta Dec 23 2024 02:14:46 (64-bit)
+Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
+Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
+Created on:       24/12/31 21:49:59
+Executable Image: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2.bin
+creating a RAW Binary Image executable
+
+
+                        +------------+
+                        |   Groups   |
+                        +------------+
+
+Group                           Address              Size
+=====                           =======              ====
+
+DGROUP                          00000688             0000009e
+
+
+
+                        +--------------+
+                        |   Segments   |
+                        +--------------+
+
+Segment                Class          Group          Address         Size
+=======                =====          =====          =======         ====
+
+_ENTRY                 CODE           AUTO           00000000        00000013
+_TEXT                  CODE           AUTO           00000013        00000674
+CONST                  DATA           DGROUP         00000688        0000009b
+CONST2                 DATA           DGROUP         00000724        00000000
+_DATA                  DATA           DGROUP         00000724        00000002
+
+
+                        +----------------+
+                        |   Memory Map   |
+                        +----------------+
+
+* = unreferenced symbol
++ = symbol only referenced locally
+
+Address        Symbol
+=======        ======
+
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/main.obj(main.asm)
+00000000       entry
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/x86.obj(x86.asm)
+00000013       _x86_video_writechar_tty
+00000026       _x86_video_writestr_tty
+00000051       _x86_div64_32
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj(main)
+00000082       _cstart_
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj(stdio)
+000000fc+      putc_
+00000122       puts_
+00000152       _printf
+000003d0+      printf_number_
+00000724+      _hex_chars
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/string.obj(string)
+00000646       strlen_
+
+
+                        +---------------------+
+                        |   Module Segments   |
+                        +---------------------+
+
+! = 32-bit segment
+c = initialized communal data
+
+Module          Segment               Class           Address         Size
+======          =======               =====           =======         ====
+
+main.asm        _ENTRY                CODE           00000000         00000013
+x86.asm         _TEXT                 CODE           00000013         0000006f
+main            _TEXT                 CODE           00000082         0000007a
+                CONST                 DATA           00000688         0000008a
+                CONST2                DATA           00000724         00000000
+                _DATA                 DATA           00000724         00000000
+stdio           _TEXT                 CODE           000000fc         0000054a
+                CONST                 DATA           00000712         00000011
+                CONST2                DATA           00000724         00000000
+                _DATA                 DATA           00000724         00000002
+string          _TEXT                 CODE           00000646         00000041
+                CONST                 DATA           00000724         00000000
+                CONST2                DATA           00000724         00000000
+                _DATA                 DATA           00000726         00000000
+Warning! W1014: stack segment not found
+
+
+                        +-----------------------+
+                        |   Linker Statistics   |
+                        +-----------------------+
+
+Stack size:  0200 (512.)
+Memory size:  0726 (1830.)
+Entry point address: 00000000
+Link time: 00:00.82

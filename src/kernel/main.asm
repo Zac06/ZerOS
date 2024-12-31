@@ -1,13 +1,22 @@
-org 0x7C00
+org 0x0
 bits 16
 
 %define ENDL 0x0d, 0x0a     
 ;line feed (LF) and carriage return (CR)
 
 start:
-    jmp main                ;make it so that the program always starts from main:
+    ;segments are already setup by the bootloader. for now we also use the same stack
 
-;===============================================================================
+    ;print msg
+    mov si, msg_akunamatata
+    call puts
+
+.halt:
+    cli
+    hlt
+
+
+;===================================================================================
 
 ;prints a string to the screen.
 ;parameters: ds:si to string.
@@ -33,30 +42,6 @@ puts:
 
 ;================================================================================
 
-main:
-    ;setup data segments
-
-    mov ax, 0
-    mov dx, 0
-    mov es, ax              ;cannot do mov es/ds, 0 directly
-
-    mov ss, ax
-    mov sp, 0x7c00          ;stack grows down from the start of the program
-
-    ;print msg
-    mov si, msg_akunamatata
-    call puts
-
-    hlt
-
-.halt:
-    jmp .halt
-
-
-;===================================================================================
-
 
 msg_akunamatata: db "akunamatataragazzi", ENDL, 0
-
-times 510-($-$$) db 0       ;DIRECTIVE: fill the program with 0s for the first sector (512 bytes)
-dw 0AA55h                   ;
+                ;
