@@ -23,7 +23,7 @@
 </p>
 
 This is a personal project, made for scholastic purposes mainly.
-For now, a significant portion of the code has been written accordingly to the [Building a bootloader](www.youtube.com/playlist?list=PLFjM7v6KGMpjWYxnihhd4P3G0BhMB9ReG) tutorial by [nanobyte](github.com/nanobyte-dev).
+For now, a significant portion of the code has been written accordingly to the [Building a bootloader](https://www.youtube.com/playlist?list=PLFjM7v6KGMpjWYxnihhd4P3G0BhMB9ReG) tutorial by [nanobyte](https://github.com/nanobyte-dev).
 <br>
 The aim is to make a "usable" operating system while still maintaning low size and performance need.
 <br>
