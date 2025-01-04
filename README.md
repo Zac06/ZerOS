@@ -1,5 +1,4 @@
 # ZerOS
 
 > [!WARNING]
-
-Just trying out MD
+> Just trying out MD
