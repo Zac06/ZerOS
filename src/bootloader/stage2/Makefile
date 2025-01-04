@@ -4,7 +4,7 @@ CC16?=/usr/bin/watcom/binl64/wcc
 LD16?=/usr/bin/watcom/binl64/wlink
 
 ASMFLAGS?=-f obj
-CFLAGS16?=-4 -d3 -s -wx -ms -zl -zq
+CFLAGS16?=-4 -d3 -s -wx -ms -zl -zq -za99
 
 SOURCES_C=$(wildcard *.c)
 SOURCES_ASM=$(wildcard *.asm)

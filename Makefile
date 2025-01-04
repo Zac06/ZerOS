@@ -20,6 +20,9 @@ $(BUILD_DIR)/main_floppy.img: bootloader kernel
 	dd if=$(BUILD_DIR)/stage1.bin of=$(BUILD_DIR)/main_floppy.img conv=notrunc
 	mcopy -i $(BUILD_DIR)/main_floppy.img $(BUILD_DIR)/stage2.bin "::stage2.bin"
 	mcopy -i $(BUILD_DIR)/main_floppy.img $(BUILD_DIR)/kernel.bin "::kernel.bin"
+	mmd -i $(BUILD_DIR)/main_floppy.img "::testdir"
+	mcopy -i $(BUILD_DIR)/main_floppy.img test.txt "::testdir/test.txt"
+	mcopy -i $(BUILD_DIR)/main_floppy.img bigtext.txt "::testdir/bigtext.txt"
 
 # Bootloader 
 bootloader: stage1 stage2

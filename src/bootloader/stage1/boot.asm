@@ -42,7 +42,7 @@ start:
     ;setup data segments
 
     mov ax, 0
-    mov dx, 0
+    mov ds, ax
     mov es, ax              ;cannot do mov es/ds, 0 directly
 
     mov ss, ax
@@ -211,7 +211,7 @@ floppy_error:
 wait_key_and_reboot:
     mov ah, 0
     int 0x16            ;wait for key
-    jmp 0xFFFF          ;jump to beginning of BIOS, should reboot
+    jmp 0xFFFF:0        ;jump to beginning of BIOS, should reboot
 
     .halt:
         cli                 ;disable interrupts

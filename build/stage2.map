@@ -1,7 +1,7 @@
 Open Watcom Linker Version 2.0 beta Dec 23 2024 02:14:46 (64-bit)
 Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
 Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       24/12/31 21:49:59
+Created on:       25/01/04 15:53:18
 Executable Image: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2.bin
 creating a RAW Binary Image executable
 
@@ -13,7 +13,7 @@ creating a RAW Binary Image executable
 Group                           Address              Size
 =====                           =======              ====
 
-DGROUP                          00000688             0000009e
+DGROUP                          00001b34             0000023a
 
 
 
@@ -25,10 +25,11 @@ Segment                Class          Group          Address         Size
 =======                =====          =====          =======         ====
 
 _ENTRY                 CODE           AUTO           00000000        00000013
-_TEXT                  CODE           AUTO           00000013        00000674
-CONST                  DATA           DGROUP         00000688        0000009b
-CONST2                 DATA           DGROUP         00000724        00000000
-_DATA                  DATA           DGROUP         00000724        00000002
+_TEXT                  CODE           AUTO           00000013        00001b21
+CONST                  DATA           DGROUP         00001b34        0000022b
+CONST2                 DATA           DGROUP         00001d60        00000000
+_DATA                  DATA           DGROUP         00001d60        00000006
+_BSS                   BSS            DGROUP         00001d66        00000008
 
 
                         +----------------+
@@ -47,16 +48,52 @@ Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/x86.obj(x86.asm)
 00000013       _x86_video_writechar_tty
 00000026       _x86_video_writestr_tty
 00000051       _x86_div64_32
+00000082       _x86_disk_read
+000000b9       _x86_disk_reset
+000000ce       _x86_disk_getdriveparams
+00000112       __U4D
+0000013c       __U4M
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/ctype.obj(ctype)
+00000156+      isupper_
+00000194+      islower_
+000001d2       toupper_
+0000020f+      tolower_
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/disk.obj(disk)
+0000024c       disk_init_
+000002c0+      disk_lba2chs_
+00000373       disk_read_sectors_
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/fat.obj(fat)
+00000410+      fat_read_bootsector_
+00000444+      fat_read_fat_
+00000488       fat_init_
+000006ee+      fat_clust2lba_
+00000744+      fat_open_entry_
+0000090c+      fat_next_clust_
+00000995       fat_read_
+00000ce4       fat_read_entry_
+00000d3d       fat_close_
+00000db4+      fat_find_file_
+00000eec       fat_open_
 Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj(main)
-00000082       _cstart_
+00001066+      end_
+00001080       _cstart_
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/memory.obj(memory)
+0000128d       memcpy_
+00001301       memset_
+00001360       memcmp_
 Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj(stdio)
-000000fc+      putc_
-00000122       puts_
-00000152       _printf
-000003d0+      printf_number_
-00000724+      _hex_chars
+000013d9       putc_
+00001400       puts_
+00001430+      puts_f_
+0000146d       _printf
+0000171b+      printf_number_
+00001d64+      _hex_chars
 Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/string.obj(string)
-00000646       strlen_
+00001991       strlen_
+000019d2       strchr_
+00001a30+      strcpy_
+Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/utils.obj(utils)
+00001aaa+      align_
 
 
                         +---------------------+
@@ -70,19 +107,44 @@ Module          Segment               Class           Address         Size
 ======          =======               =====           =======         ====
 
 main.asm        _ENTRY                CODE           00000000         00000013
-x86.asm         _TEXT                 CODE           00000013         0000006f
-main            _TEXT                 CODE           00000082         0000007a
-                CONST                 DATA           00000688         0000008a
-                CONST2                DATA           00000724         00000000
-                _DATA                 DATA           00000724         00000000
-stdio           _TEXT                 CODE           000000fc         0000054a
-                CONST                 DATA           00000712         00000011
-                CONST2                DATA           00000724         00000000
-                _DATA                 DATA           00000724         00000002
-string          _TEXT                 CODE           00000646         00000041
-                CONST                 DATA           00000724         00000000
-                CONST2                DATA           00000724         00000000
-                _DATA                 DATA           00000726         00000000
+x86.asm         _TEXT                 CODE           00000013         00000143
+ctype           _TEXT                 CODE           00000156         000000f6
+                CONST                 DATA           00001b34         00000000
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d60         00000000
+disk            _TEXT                 CODE           0000024c         000001c4
+                CONST                 DATA           00001b34         00000000
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d60         00000000
+fat             _TEXT                 CODE           00000410         00000c56
+                CONST                 DATA           00001b34         0000014e
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d60         00000004
+                _BSS                  BSS            00001d66         00000008
+main            _TEXT                 CODE           00001066         00000227
+                CONST                 DATA           00001c82         000000cc
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d64         00000000
+math            _TEXT                 CODE           0000128d         00000000
+                CONST                 DATA           00001d4e         00000000
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d64         00000000
+memory          _TEXT                 CODE           0000128d         0000014c
+                CONST                 DATA           00001d4e         00000000
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d64         00000000
+stdio           _TEXT                 CODE           000013d9         000005b8
+                CONST                 DATA           00001d4e         00000011
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d64         00000002
+string          _TEXT                 CODE           00001991         00000119
+                CONST                 DATA           00001d60         00000000
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d66         00000000
+utils           _TEXT                 CODE           00001aaa         0000008a
+                CONST                 DATA           00001d60         00000000
+                CONST2                DATA           00001d60         00000000
+                _DATA                 DATA           00001d66         00000000
 Warning! W1014: stack segment not found
 
 
@@ -91,6 +153,6 @@ Warning! W1014: stack segment not found
                         +-----------------------+
 
 Stack size:  0200 (512.)
-Memory size:  0726 (1830.)
+Memory size:  1d6e (7534.)
 Entry point address: 00000000
-Link time: 00:00.82
+Link time: 00:00.73

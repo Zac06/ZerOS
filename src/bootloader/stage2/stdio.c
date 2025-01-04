@@ -12,6 +12,13 @@ void puts(const char* str){
     x86_video_writestr_tty(str, strlen(str), 0, 0x07);
 }
 
+void puts_f(const char far* str){
+    while(*str){
+        putc(*str);
+        str++;
+    }
+}
+
 #define PRINTF_STATE_NORMAL         0
 #define PRINTF_STATE_LENGTH         1
 #define PRINTF_STATE_LENGTH_SHORT   2
@@ -32,7 +39,7 @@ void _cdecl printf(const char* fmt, ...){
     int length=PRINTF_LENGTH_DEFAULT;
     bool inc=true;
     int radix=10;
-    bool sign;
+    bool sign=false;
 
     argp++;                         //point to the 2nd argument
 
@@ -63,7 +70,7 @@ void _cdecl printf(const char* fmt, ...){
 
                     case 'l':
                         length=PRINTF_LENGTH_LONG;
-                        state=PRINTF_STATE_LENGTH_SHORT;
+                        state=PRINTF_STATE_LENGTH_LONG;
                         break;
 
                     default:
@@ -103,8 +110,14 @@ void _cdecl printf(const char* fmt, ...){
                         break;
 
                     case 's':
-                        puts(*(const char**)argp);
-                        argp++;
+                        if(length==PRINTF_LENGTH_LONG || length==PRINTF_LENGTH_LONG_LONG){
+                            puts_f(*(const char far**)argp);
+                            argp+=2;
+                        }else{
+                            puts_f(*(const char**)argp);
+                            argp++;
+                        }
+                        
                         break;
 
                     case '%':

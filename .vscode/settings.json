@@ -4,6 +4,10 @@
         "x86.h": "c",
         "string.h": "c",
         "stdbool.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "fat.h": "c",
+        "memdefs.h": "c",
+        "utils.h": "c"
     }
 }
