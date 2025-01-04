@@ -11,26 +11,13 @@
 > **I disclaim all responsibility for any damage, included but not limited to hardware, software or data, that may occur on the equipment on which this software is run. 
 >  Use it at your own risk.**
 
-<br>
-
 ---
-<br>
-<br>
-<center>
-<picture>
-  <source
-    media="(prefers-color-scheme: dark)"
-    srcset="res/logos/logo-dark.png"
-  />
-  <source
-    media="(prefers-color-scheme: light)"
-    srcset="res/logos/logo-light.png"
-  />
-  <img
-    alt="GitHub logo"
-    src="https://mui.com/static/readme/github-lightmode.svg"
-    width="80"
-    height="43"
-  />
-</picture>
-</center>
+
+
+<p align="center">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="res/logos/logo-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="res/logos/logo-light.png">
+      <img alt="zeros-logo"
+    </picture>
+</p>
