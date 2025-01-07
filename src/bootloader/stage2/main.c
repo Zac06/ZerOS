@@ -1,14 +1,14 @@
-#include "stdint.h"
+#include <stdint.h>     //with GCC, stdint becomes a standard file
 #include "stdio.h"
-#include "disk.h"
-#include "fat.h"
+//#include "disk.h"
+//#include "fat.h"
 
 void end(){
     for(;;);
 }
 
-void _cdecl cstart_(uint16_t boot_drive){
-    puts("========= Hello world ==========\r\n");
+void __attribute__((cdecl)) stage2_c(uint16_t boot_drive){
+    /*puts("========= Hello world ==========\r\n");
 
     printf("Formatted %% %c %s\r\n", 'a', "string");
     printf("Formatted %d %i %x %p %o %hd %hi %hhu %hhd\r\n", 1234, -5678, 0xdead, 0xbeef, 012345, (short)27, (short)-42, (unsigned char)20, (signed char)-10);
@@ -56,6 +56,9 @@ void _cdecl cstart_(uint16_t boot_drive){
         }
     }
     fat_close(fd);
+*/
+    cls();
+    printf("hello from stage2 bootloader with GCC! bye openwatcom");
 
     end();
 }

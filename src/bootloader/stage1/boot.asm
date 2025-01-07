@@ -355,8 +355,8 @@ msg_stage2_nf:      db "stage2 not found!", ENDL, 0
 stage2_filename:    db "STAGE2  BIN"
 stage2_cluster:     dw 0
 
-STAGE2_LOAD_SEGMENT     equ 0x2000      ;equ: don't allocate memory for the constant. basically, a #define in C
-STAGE2_LOAD_OFFSET      equ 0
+STAGE2_LOAD_SEGMENT     equ 0x0      ;equ: don't allocate memory for the constant. basically, a #define in C
+STAGE2_LOAD_OFFSET      equ 0x500
 
 times 510-($-$$) db 0       ;DIRECTIVE: fill the program with 0s for the first sector (512 bytes)
 dw 0AA55h                   ;

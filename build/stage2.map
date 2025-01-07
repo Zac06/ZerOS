@@ -1,158 +1,159 @@
-Open Watcom Linker Version 2.0 beta Dec 23 2024 02:14:46 (64-bit)
-Copyright (c) 2002-2024 The Open Watcom Contributors. All Rights Reserved.
-Portions Copyright (c) 1985-2002 Sybase, Inc. All Rights Reserved.
-Created on:       25/01/04 15:53:18
-Executable Image: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2.bin
-creating a RAW Binary Image executable
+Archive member included to satisfy reference by file (symbol)
 
+/home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                              /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj (__udivdi3)
+/home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                              /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj (__umoddi3)
 
-                        +------------+
-                        |   Groups   |
-                        +------------+
+There are no discarded input sections
 
-Group                           Address              Size
-=====                           =======              ====
+Memory Configuration
 
-DGROUP                          00001b34             0000023a
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
 
+Linker script and memory map
 
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/entry.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/x86.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a
+                0x00000500                        phys = 0x500
+                0x00000500                        . = phys
 
-                        +--------------+
-                        |   Segments   |
-                        +--------------+
+.entry          0x00000500       0xc3
+                0x00000500                        __entry_start = .
+ *(.entry)
+ .entry         0x00000500       0xc3 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/entry.obj
+                0x00000500                entry
 
-Segment                Class          Group          Address         Size
-=======                =====          =====          =======         ====
+.text           0x000005d0      0x94e
+                0x000005d0                        __text_start = .
+ *(.text)
+ .text          0x000005d0       0x17 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/x86.obj
+                0x000005d0                x86_outb
+                0x000005db                x86_inb
+ .text          0x000005e7       0x2f /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+                0x000005e7                end
+                0x000005ec                stage2_c
+ .text          0x00000616      0x6a7 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+                0x00000616                putclr
+                0x00000648                putchr
+                0x00000677                putc
+                0x0000076a                puts
+                0x00000799                cls
+                0x00000807                setcrs
+                0x00000878                printf
+                0x00000bb9                printf_unsigned
+                0x00000c60                printf_signed
+ *fill*         0x00000cbd        0x3 
+ .text          0x00000cc0      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                0x00000cc0                __udivdi3
+ *fill*         0x00000dda        0x6 
+ .text          0x00000de0      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x00000de0                __umoddi3
 
-_ENTRY                 CODE           AUTO           00000000        00000013
-_TEXT                  CODE           AUTO           00000013        00001b21
-CONST                  DATA           DGROUP         00001b34        0000022b
-CONST2                 DATA           DGROUP         00001d60        00000000
-_DATA                  DATA           DGROUP         00001d60        00000006
-_BSS                   BSS            DGROUP         00001d66        00000008
+.data           0x00000f20        0x8
+                0x00000f20                        __data_start = .
+ *(.data)
+ .data          0x00000f20        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .data          0x00000f20        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+                0x00000f20                g_screenbuf
+                0x00000f24                hex_chars
+ .data          0x00000f28        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .data          0x00000f28        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
+.rodata         0x00000f28       0xe9
+                0x00000f28                        __rodata_start = .
+ *(.rodata)
+ .rodata        0x00000f28       0x36 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ *fill*         0x00000f5e        0x2 
+ .rodata        0x00000f60       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+                0x00000f60                SCR_W
+                0x00000f64                SCR_H
 
-                        +----------------+
-                        |   Memory Map   |
-                        +----------------+
+.eh_frame       0x00001014       0xd8
+ .eh_frame      0x00001014       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .eh_frame      0x00001078       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-* = unreferenced symbol
-+ = symbol only referenced locally
+.bss            0x000010ec        0x8
+                0x000010ec                        __bss_start = .
+ *(.bss)
+ .bss           0x000010ec        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .bss           0x000010ec        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+                0x000010ec                g_screenx
+                0x000010f0                g_screeny
+ .bss           0x000010f4        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .bss           0x000010f4        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x000010f4                        __end = .
+OUTPUT(/home/zaccaria/Scrivania/Proj/ZerOS/build/stage2.bin binary)
 
-Address        Symbol
-=======        ======
+.debug_info     0x00000000      0xb3c
+ .debug_info    0x00000000       0xe4 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_info    0x000000e4      0x3cd /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .debug_info    0x000004b1      0x33a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_info    0x000007eb      0x351 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/main.obj(main.asm)
-00000000       entry
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/asm/x86.obj(x86.asm)
-00000013       _x86_video_writechar_tty
-00000026       _x86_video_writestr_tty
-00000051       _x86_div64_32
-00000082       _x86_disk_read
-000000b9       _x86_disk_reset
-000000ce       _x86_disk_getdriveparams
-00000112       __U4D
-0000013c       __U4M
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/ctype.obj(ctype)
-00000156+      isupper_
-00000194+      islower_
-000001d2       toupper_
-0000020f+      tolower_
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/disk.obj(disk)
-0000024c       disk_init_
-000002c0+      disk_lba2chs_
-00000373       disk_read_sectors_
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/fat.obj(fat)
-00000410+      fat_read_bootsector_
-00000444+      fat_read_fat_
-00000488       fat_init_
-000006ee+      fat_clust2lba_
-00000744+      fat_open_entry_
-0000090c+      fat_next_clust_
-00000995       fat_read_
-00000ce4       fat_read_entry_
-00000d3d       fat_close_
-00000db4+      fat_find_file_
-00000eec       fat_open_
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj(main)
-00001066+      end_
-00001080       _cstart_
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/memory.obj(memory)
-0000128d       memcpy_
-00001301       memset_
-00001360       memcmp_
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj(stdio)
-000013d9       putc_
-00001400       puts_
-00001430+      puts_f_
-0000146d       _printf
-0000171b+      printf_number_
-00001d64+      _hex_chars
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/string.obj(string)
-00001991       strlen_
-000019d2       strchr_
-00001a30+      strcpy_
-Module: /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/utils.obj(utils)
-00001aaa+      align_
+.debug_abbrev   0x00000000      0x547
+ .debug_abbrev  0x00000000       0xc0 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_abbrev  0x000000c0      0x1bb /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .debug_abbrev  0x0000027b      0x15b /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_abbrev  0x000003d6      0x171 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
+.debug_aranges  0x00000000       0x80
+ .debug_aranges
+                0x00000000       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_aranges
+                0x00000020       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .debug_aranges
+                0x00000040       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_aranges
+                0x00000060       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-                        +---------------------+
-                        |   Module Segments   |
-                        +---------------------+
+.debug_line     0x00000000      0x697
+ .debug_line    0x00000000       0x63 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_line    0x00000063      0x2dc /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .debug_line    0x0000033f      0x180 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_line    0x000004bf      0x1d8 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-! = 32-bit segment
-c = initialized communal data
+.debug_str      0x00000000      0x6ba
+ .debug_str     0x00000000       0xf8 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_str     0x000000f8      0x1c8 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .debug_str     0x000002c0      0x1fd /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_str     0x000004bd      0x1fd /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-Module          Segment               Class           Address         Size
-======          =======               =====           =======         ====
+.debug_line_str
+                0x00000000      0x3ec
+ .debug_line_str
+                0x00000000       0xf5 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_line_str
+                0x000000f5       0xff /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .debug_line_str
+                0x000001f4       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_line_str
+                0x000002f0       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-main.asm        _ENTRY                CODE           00000000         00000013
-x86.asm         _TEXT                 CODE           00000013         00000143
-ctype           _TEXT                 CODE           00000156         000000f6
-                CONST                 DATA           00001b34         00000000
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d60         00000000
-disk            _TEXT                 CODE           0000024c         000001c4
-                CONST                 DATA           00001b34         00000000
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d60         00000000
-fat             _TEXT                 CODE           00000410         00000c56
-                CONST                 DATA           00001b34         0000014e
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d60         00000004
-                _BSS                  BSS            00001d66         00000008
-main            _TEXT                 CODE           00001066         00000227
-                CONST                 DATA           00001c82         000000cc
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d64         00000000
-math            _TEXT                 CODE           0000128d         00000000
-                CONST                 DATA           00001d4e         00000000
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d64         00000000
-memory          _TEXT                 CODE           0000128d         0000014c
-                CONST                 DATA           00001d4e         00000000
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d64         00000000
-stdio           _TEXT                 CODE           000013d9         000005b8
-                CONST                 DATA           00001d4e         00000011
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d64         00000002
-string          _TEXT                 CODE           00001991         00000119
-                CONST                 DATA           00001d60         00000000
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d66         00000000
-utils           _TEXT                 CODE           00001aaa         0000008a
-                CONST                 DATA           00001d60         00000000
-                CONST2                DATA           00001d60         00000000
-                _DATA                 DATA           00001d66         00000000
-Warning! W1014: stack segment not found
+.comment        0x00000000       0x4c
+ .comment       0x00000000       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .comment       0x00000013       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
+ .comment       0x00000026       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .comment       0x00000039       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
+.debug_frame    0x00000000      0x184
+ .debug_frame   0x00000000       0x4c /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/main.obj
+ .debug_frame   0x0000004c      0x138 /home/zaccaria/Scrivania/Proj/ZerOS/build/stage2/c/stdio.obj
 
-                        +-----------------------+
-                        |   Linker Statistics   |
-                        +-----------------------+
+.debug_loclists
+                0x00000000      0x978
+ .debug_loclists
+                0x00000000      0x50c /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_loclists
+                0x0000050c      0x46c /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-Stack size:  0200 (512.)
-Memory size:  1d6e (7534.)
-Entry point address: 00000000
-Link time: 00:00.73
+.debug_rnglists
+                0x00000000       0x49
+ .debug_rnglists
+                0x00000000       0x2a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_rnglists
+                0x0000002a       0x1f /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)

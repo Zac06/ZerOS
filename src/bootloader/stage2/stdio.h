@@ -1,8 +1,12 @@
 #pragma once
 
-#include "stdint.h"
+#include <stdint.h>
+#include <stdarg.h>
 
 void putc(char c);
 void puts(const char* str);
 
-void _cdecl printf(const char* fmt, ...);
+void printf(const char* fmt, ...);
+
+void cls();
+void setcrs(int x, int y);
