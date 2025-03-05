@@ -12,6 +12,9 @@
 #define MEM_FAT_ADDR    ((void*) 0x20000)
 #define MEM_FAT_SIZE    0x00010000                      //NOTE: USE LITTLE ENDIAN NOTATION (bytes reversed)
 
+#define MEM_LOAD_KERNEL ((void*)0x30000)
+#define MEM_LOAD_SIZE   0x10000
+#define MEM_KERNEL_ADDR ((void*)0x100000)
 // 0x00030000 - 0x0007FFFF (free)
 
 // 0x00080000 - 0x0009FFFF (extended bios data)
