@@ -15,8 +15,8 @@ bool disk_init(disk* dsk, uint8_t drive_no){
     }
 
     dsk->id=drive_no;
-    dsk->cylinders=cylinders+1;
-    dsk->heads=heads+1;
+    dsk->cylinders=cylinders;
+    dsk->heads=heads;
     dsk->sectors=sectors;
     
     return true;
