@@ -13,8 +13,6 @@ int g_screeny=0;
 const unsigned SCR_W=80;            //in characters
 const unsigned SCR_H=25;
 
-
-
 void putclr(int x, int y, uint8_t color){
     g_screenbuf[2*(y*SCR_W+x)+1]=color;     //buffer contains 2 bytes per letter, and the second byte is the attribute one.
 }
@@ -44,13 +42,17 @@ void putc(char c){
 
         default:
             putchr(g_screenx, g_screeny, c);
+            g_screenx++;
             break;
     }
 
-    g_screenx++;
     if(g_screenx>=SCR_W){
         g_screenx=0;
         g_screeny++;
+    }
+
+    if(g_screeny>=SCR_H){
+        scrlback(1);
     }
 
     setcrs(g_screenx, g_screeny);
@@ -86,7 +88,39 @@ void setcrs(int x, int y){
     x86_outb(0x3d4, 0xf);                       //tells something to the vga driver
     x86_outb(0x3d5, (uint8_t)(pos & 0xff));     //sets lower byte to this
     x86_outb(0x3d4, 0xe);
-    x86_outb(0x3d5, (uint8_t)((pos >> 8) & 0xff));  //sets upper byte
+    x86_outb(0x3d5, (uint8_t)((pos >> 8) & 0xff));  //sdets upper byte
+}
+
+// =====================================
+
+char getchr(int x, int y){
+    return g_screenbuf[2*(y*SCR_W+x)];
+}
+
+//======================================
+
+uint8_t getclr(int x, int y){
+    return g_screenbuf[2*(y*SCR_W+x)+1];
+}
+
+// =====================================
+
+void scrlback(int lines){
+    for(int i=lines; i<SCR_H; i++){
+        for(int j=0; j<SCR_W; j++){
+            putchr(j, i-lines, getchr(j,i));
+            putclr(j, i-lines, getclr(j,i));
+        }
+    }
+
+    for(int i=SCR_H-lines; i<SCR_H; i++){
+        for(int j=0; j<SCR_W; j++){
+            putchr(j,i,' ');
+            putclr(j,i,CLR_DEFAULT);
+        }
+    }
+
+    g_screeny-=lines;
 }
 
 // =====================================
@@ -186,11 +220,11 @@ void printf(const char* fmt, ...){
                         
                         puts(va_arg(args, const char*));
                         break;
-
+    
                     case '%':
                         putc('%');
                         break;
-
+                        
                     case 'd':
                     case 'i':
                         radix=10;
@@ -264,7 +298,7 @@ void printf(const char* fmt, ...){
                 length=PRINTF_LENGTH_DEFAULT;
                 radix=10;
                 sign=false;
-
+                number=false;
                 break;
 
         }

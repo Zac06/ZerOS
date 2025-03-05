@@ -9,5 +9,8 @@
         "fat.h": "c",
         "memdefs.h": "c",
         "utils.h": "c"
+    },
+    "files.exclude": {
+        "toolchain/**": true
     }
 }
