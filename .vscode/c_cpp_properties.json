@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/include/"
             ],
             "defines": [
             ],

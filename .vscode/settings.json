@@ -9,7 +9,9 @@
         "fat.h": "c",
         "memdefs.h": "c",
         "utils.h": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "memory.h": "c",
+        "compare": "c"
     },
     "files.exclude": {
         "toolchain/**": true

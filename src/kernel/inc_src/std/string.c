@@ -1,4 +1,5 @@
-#include "memory.h"
+#include <std/string.h>
+#include <stdint.h>
 
 void* memcpy(void* dst, const void* src, uint16_t num){
     uint8_t* u8dst=(uint8_t*) dst;

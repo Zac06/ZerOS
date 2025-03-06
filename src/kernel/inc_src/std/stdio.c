@@ -1,8 +1,8 @@
 //#include "x86.h"      //in protected mode, we can't use interrupts.
                         //hence we need to write at memory addresses 
                         //for the display
-#include "stdio.h"
-#include "x86.h"
+#include <std/stdio.h>
+#include <i686/io.h>
 
 #include <stdint.h>
 #include <stdbool.h>
