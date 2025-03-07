@@ -12,7 +12,8 @@
         "cstdint": "c",
         "memory.h": "c",
         "compare": "c",
-        "ranges": "c"
+        "ranges": "c",
+        "binary.h": "c"
     },
     "files.exclude": {
         "toolchain/**": true
