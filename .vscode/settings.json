@@ -11,7 +11,8 @@
         "utils.h": "c",
         "cstdint": "c",
         "memory.h": "c",
-        "compare": "c"
+        "compare": "c",
+        "ranges": "c"
     },
     "files.exclude": {
         "toolchain/**": true
