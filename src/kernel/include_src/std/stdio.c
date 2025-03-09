@@ -85,10 +85,10 @@ void cls(){
 void setcrs(int x, int y){
     int pos=y*SCR_W+x;
 
-    x86_outb(0x3d4, 0xf);                       //tells something to the vga driver
-    x86_outb(0x3d5, (uint8_t)(pos & 0xff));     //sets lower byte to this
-    x86_outb(0x3d4, 0xe);
-    x86_outb(0x3d5, (uint8_t)((pos >> 8) & 0xff));  //sdets upper byte
+    i686_outb(0x3d4, 0xf);                       //tells something to the vga driver
+    i686_outb(0x3d5, (uint8_t)(pos & 0xff));     //sets lower byte to this
+    i686_outb(0x3d4, 0xe);
+    i686_outb(0x3d5, (uint8_t)((pos >> 8) & 0xff));  //sdets upper byte
 }
 
 // =====================================

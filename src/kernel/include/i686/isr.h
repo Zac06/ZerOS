@@ -26,5 +26,8 @@ typedef struct {
     
 }__attribute__((packed)) registers;
 
+typedef void (*isr_handler)(registers* regs);
+
 void i686_isr_init();
 void __attribute__((cdecl)) i686_isr_handler(registers* regs);
+void i686_isr_register_handler(int interrno, isr_handler handler);
