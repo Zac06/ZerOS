@@ -1,5 +1,7 @@
 #include<i686/pic.h>
 #include<i686/io.h>
+#include<stdbool.h>
+#include<stdint.h>
 
 #define PIC1_CMD_PORT 0x20
 #define PIC1_DATA_PORT 0x21
@@ -127,7 +129,12 @@ enum {
     PIC_CMD_READ_ISR    = 0x0b
 } pic_cmd;
 
-void i686_pic_cfg(uint8_t offsetpic1, uint8_t offsetpic2){
+static uint16_t g_mask=0xffff;
+static bool g_auto_eoi=false;
+
+void i686_pic_cfg(uint8_t offsetpic1, uint8_t offsetpic2, bool auto_eoi){
+    i686_pic_disable();
+
     //Send ICW1 to both PICs
     i686_outb(PIC1_CMD_PORT, PIC_ICW1_ICW4 | PIC_ICW1_INIT);
     i686_iowait();
@@ -147,9 +154,14 @@ void i686_pic_cfg(uint8_t offsetpic1, uint8_t offsetpic2){
     i686_iowait();
 
     //Send ICW4
-    i686_outb(PIC1_DATA_PORT, PIC_ICW4_8086);   //8086 mode
+    uint8_t icw4=PIC_ICW4_8086;
+    if(auto_eoi){
+        icw4|=PIC_ICW4_AUTOEOI;
+    }
+
+    i686_outb(PIC1_DATA_PORT, icw4);   //8086 mode
     i686_iowait();
-    i686_outb(PIC2_DATA_PORT, PIC_ICW4_8086);     //tell slave PIC its cascade identity
+    i686_outb(PIC2_DATA_PORT, icw4);     //tell slave PIC its cascade identity
     i686_iowait();
 
     //clear data registers: setting all masks to 0 (no interrupts masked, hence all interrupts are forwarded to the CPU)
@@ -157,35 +169,34 @@ void i686_pic_cfg(uint8_t offsetpic1, uint8_t offsetpic2){
     i686_iowait();
     i686_outb(PIC2_DATA_PORT, 0x0);
     i686_iowait();
+
+    i686_pic_disable();
 }
 
 void i686_pic_mask(uint8_t irq){        //disabling an interrupt line
     if(irq<8){         //this is needed to identify whether the interrupt line is on the master or slave PIC
-        uint8_t currentmask=i686_inb(PIC1_DATA_PORT);
+        uint8_t currentmask=g_mask&0xff;
         i686_outb(PIC1_DATA_PORT,  currentmask | (1 << irq));
     }else{
         irq-=8;         //this is needed to mask the correct interrupt line on the slave PIC
-        uint8_t currentmask=i686_inb(PIC2_DATA_PORT);
+        uint8_t currentmask=g_mask>>8;
         i686_outb(PIC2_DATA_PORT,  currentmask | (1 << irq));
     }
 }
 
 void i686_pic_unmask(uint8_t irq){        //disabling an interrupt line
     if(irq<8){         //this is needed to identify whether the interrupt line is on the master or slave PIC
-        uint8_t currentmask=i686_inb(PIC1_DATA_PORT);
+        uint8_t currentmask=g_mask&0xff;
         i686_outb(PIC1_DATA_PORT,  currentmask & ~(1 << irq));
     }else{
         irq-=8;         //this is needed to unmask the correct interrupt line on the slave PIC
-        uint8_t currentmask=i686_inb(PIC2_DATA_PORT);
+        uint8_t currentmask=g_mask>>8;
         i686_outb(PIC2_DATA_PORT,  currentmask & ~(1 << irq));
     }
 }
 
 void i686_pic_disable(){
-    i686_outb(PIC1_DATA_PORT, 0xff);
-    i686_iowait();
-    i686_outb(PIC2_DATA_PORT, 0xff);
-    i686_iowait();
+    i686_pic_setmask(0xffff);
 }
 
 void i686_pic_send_eoi(uint8_t irq){
@@ -206,4 +217,13 @@ uint16_t i686_pic_read_isr( ){
     i686_outb(PIC1_CMD_PORT, PIC_CMD_READ_ISR);
     i686_outb(PIC2_CMD_PORT, PIC_CMD_READ_ISR);
     return (i686_inb(PIC2_CMD_PORT)<<8) | i686_inb(PIC1_CMD_PORT);
+}
+
+void i686_pic_setmask(uint16_t mask){
+    g_mask=mask;
+
+    i686_outb(PIC1_DATA_PORT, mask&0xff);
+    i686_iowait();
+    i686_outb(PIC2_DATA_PORT, mask>>8);
+    i686_iowait();
 }
