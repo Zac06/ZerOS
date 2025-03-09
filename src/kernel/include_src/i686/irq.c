@@ -4,6 +4,7 @@
 #include<stddef.h>
 #include<std/stdio.h>
 #include<i686/isr.h>
+#include<stdbool.h>
 
 #define PIC_REMAP_OFFSET 0x20
 
@@ -26,7 +27,7 @@ void i686_irq_handler(registers* regs){
  * This is done by sending the ICW2 to the PICs with the offset 32 for the master and 40 (or pic1+8) for the slave.
  */
 void i686_irq_init(){
-    i686_pic_cfg(PIC_REMAP_OFFSET, PIC_REMAP_OFFSET+8);
+    i686_pic_cfg(PIC_REMAP_OFFSET, PIC_REMAP_OFFSET+8, true);
 
     //set a common interrupt service routine for all interrupt lines
     for(int i=0; i<16; i++){
