@@ -19,5 +19,9 @@ void __attribute__((section(".entry"))) start(uint16_t boot_drive){
     cls();
     printf("Hi from kernel!\n");
 
+    __asm("int $0x13");
+
+
+
     end();
 }

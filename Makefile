@@ -1,8 +1,8 @@
 include build_scripts/config.mk
 
-.PHONY: all floppy_image kernel bootloader clean always tools_fat
+.PHONY: all floppy_image kernel bootloader clean always tools_fat tools_isrgen
 
-all: floppy_image tools_fat
+all: floppy_image tools_fat tools_isrgen
 
 include build_scripts/toolchain.mk
 
@@ -53,6 +53,11 @@ tools_fat: $(BUILD_DIR)/tools/fat
 $(BUILD_DIR)/tools/fat: always tools/fat/fat.c
 	@mkdir -p $(BUILD_DIR)/tools
 	@$(MAKE) -C tools/fat BUILD_DIR=$(abspath $(BUILD_DIR))
+
+tools_isrgen: $(BUILD_DIR)/tools/isrgen
+$(BUILD_DIR)/tools/isrgen: always tools/isrgen/gen.cpp
+	@mkdir -p $(BUILD_DIR)/tools
+	@$(MAKE) -C tools/isrgen BUILD_DIR=$(abspath $(BUILD_DIR))
 
 #
 # Always

@@ -13,7 +13,11 @@
         "memory.h": "c",
         "compare": "c",
         "ranges": "c",
-        "binary.h": "c"
+        "binary.h": "c",
+        "isr.h": "c",
+        "idt.h": "c",
+        "gdt.h": "c",
+        "io.h": "c"
     },
     "files.exclude": {
         "toolchain/**": true

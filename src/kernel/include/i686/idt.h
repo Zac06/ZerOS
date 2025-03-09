@@ -6,25 +6,25 @@ typedef struct {
     uint16_t segment_selector;
     uint8_t reserved;
     uint8_t flags;
-    uint8_t base_high;
+    uint16_t base_high;
 }__attribute__((packed)) idt_entry;
 
 typedef struct {
     uint16_t limit;
-    idt_entry* table;
+    idt_entry* ptr;
 }__attribute__((packed)) idt_descr;
 
 typedef enum {
-    IDT_FLAGS_GATE_TASK             =0x5,
-    IDT_FLAGS_GATE_16BIT_INT        =0x6,
-    IDT_FLAGS_GATE_16BIT_TRAP       =0x7,
-    IDT_FLAGS_GATE_32BIT_INT        =0xe,
-    IDT_FLAGS_GATE_32BIT_TRAP       =0xf,
+    IDT_FLAG_GATE_TASK             =0x5,
+    IDT_FLAG_GATE_16BIT_INT        =0x6,
+    IDT_FLAG_GATE_16BIT_TRAP       =0x7,
+    IDT_FLAG_GATE_32BIT_INT        =0xe,
+    IDT_FLAG_GATE_32BIT_TRAP       =0xf,
 
-    IDT_FLAGS_RING0                 =(0<<5),
-    IDT_FLAGS_RING1                 =(0<<6),
-    IDT_FLAGS_RING2                 =(0<<7),
-    IDT_FLAGS_RING3                 =(0<<8),
+    IDT_FLAG_RING0                 =(0<<5),
+    IDT_FLAG_RING1                 =(1<<5),
+    IDT_FLAG_RING2                 =(2<<5),
+    IDT_FLAG_RING3                 =(3<<5),
 
     IDT_FLAG_PRESENT                =0x80
 } idt_flags;

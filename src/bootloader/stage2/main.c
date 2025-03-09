@@ -17,7 +17,7 @@ void end(){
     for(;;);
 }
 
-void __attribute__((_cdecl)) stage2_c(uint16_t boot_drive){
+void __attribute__((cdecl)) stage2_c(uint16_t boot_drive){
     cls();
     
     disk dsk;

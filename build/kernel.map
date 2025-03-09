@@ -17,224 +17,503 @@ Linker script and memory map
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/gdt.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/idt.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/io.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/isr.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
-LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a
                 0x00100000                        phys = 0x100000
                 0x00100000                        . = phys
 
-.entry          0x00100000       0x4f
+.entry          0x00100000       0x51
                 0x00100000                        __entry_start = .
  *(.entry)
- .entry         0x00100000       0x4f /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .entry         0x00100000       0x51 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
                 0x00100000                start
 
-.text           0x00100050      0xcde
-                0x00100050                        __text_start = .
+.text           0x00100060     0x2bfe
+                0x00100060                        __text_start = .
  *(.text)
- .text          0x00100050       0x25 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/gdt.obj
-                0x00100050                i686_gdt_load
- *fill*         0x00100075        0xb 
- .text          0x00100080        0xd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/idt.obj
-                0x00100080                i686_idt_load
- *fill*         0x0010008d        0x3 
- .text          0x00100090       0x17 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/io.obj
-                0x00100090                x86_outb
-                0x0010009b                x86_inb
- .text          0x001000a7       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
-                0x001000a7                i686_gdt_init
- .text          0x001000c4       0xfa /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x001000c4                i686_idt_setgate
-                0x00100149                i686_idt_enablegate
-                0x00100177                i686_idt_disablegate
-                0x001001a5                i686_idt_init
- .text          0x001001be      0x7f6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x001001be                putclr
-                0x001001f0                putchr
-                0x0010021f                putc
-                0x0010032f                puts
-                0x0010035e                cls
-                0x001003cc                setcrs
-                0x0010043d                getchr
-                0x0010045f                getclr
-                0x00100484                scrlback
-                0x0010056b                printf
-                0x001008b0                printf_unsigned
-                0x00100957                printf_signed
- .text          0x001009b4       0xf5 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
-                0x001009b4                memcpy
-                0x00100a06                memset
-                0x00100a49                memcmp
- .text          0x00100aa9       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
-                0x00100aa9                hal_init
- .text          0x00100abc        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .text          0x00100abc        0x5 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
-                0x00100abc                end
- *fill*         0x00100ac1        0xf 
- .text          0x00100ad0      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
-                0x00100ad0                __udivdi3
- *fill*         0x00100bea        0x6 
- .text          0x00100bf0      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
-                0x00100bf0                __umoddi3
+ .text          0x00100060       0x25 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/gdt.obj
+                0x00100060                i686_gdt_load
+ *fill*         0x00100085        0xb 
+ .text          0x00100090        0xd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/idt.obj
+                0x00100090                i686_idt_load
+ *fill*         0x0010009d        0x3 
+ .text          0x001000a0       0x17 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/io.obj
+                0x001000a0                x86_outb
+                0x001000ab                x86_inb
+ *fill*         0x001000b7        0x9 
+ .text          0x001000c0      0xa70 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/isr.obj
+                0x001000c0                i686_isr0
+                0x001000c9                i686_isr1
+                0x001000d2                i686_isr2
+                0x001000db                i686_isr3
+                0x001000e4                i686_isr4
+                0x001000ed                i686_isr5
+                0x001000f6                i686_isr6
+                0x001000ff                i686_isr7
+                0x00100108                i686_isr8
+                0x0010010f                i686_isr9
+                0x00100118                i686_isr10
+                0x0010011f                i686_isr11
+                0x00100126                i686_isr12
+                0x0010012d                i686_isr13
+                0x00100134                i686_isr14
+                0x0010013b                i686_isr15
+                0x00100144                i686_isr16
+                0x0010014d                i686_isr17
+                0x00100154                i686_isr18
+                0x0010015d                i686_isr19
+                0x00100166                i686_isr20
+                0x0010016f                i686_isr21
+                0x00100176                i686_isr22
+                0x0010017f                i686_isr23
+                0x00100188                i686_isr24
+                0x00100191                i686_isr25
+                0x0010019a                i686_isr26
+                0x001001a3                i686_isr27
+                0x001001ac                i686_isr28
+                0x001001b5                i686_isr29
+                0x001001be                i686_isr30
+                0x001001c7                i686_isr31
+                0x001001d0                i686_isr32
+                0x001001d9                i686_isr33
+                0x001001e2                i686_isr34
+                0x001001eb                i686_isr35
+                0x001001f4                i686_isr36
+                0x001001fd                i686_isr37
+                0x00100206                i686_isr38
+                0x0010020f                i686_isr39
+                0x00100218                i686_isr40
+                0x00100221                i686_isr41
+                0x0010022a                i686_isr42
+                0x00100233                i686_isr43
+                0x0010023c                i686_isr44
+                0x00100245                i686_isr45
+                0x0010024e                i686_isr46
+                0x00100257                i686_isr47
+                0x00100260                i686_isr48
+                0x00100269                i686_isr49
+                0x00100272                i686_isr50
+                0x0010027b                i686_isr51
+                0x00100284                i686_isr52
+                0x0010028d                i686_isr53
+                0x00100296                i686_isr54
+                0x0010029f                i686_isr55
+                0x001002a8                i686_isr56
+                0x001002b1                i686_isr57
+                0x001002ba                i686_isr58
+                0x001002c3                i686_isr59
+                0x001002cc                i686_isr60
+                0x001002d5                i686_isr61
+                0x001002de                i686_isr62
+                0x001002e7                i686_isr63
+                0x001002f0                i686_isr64
+                0x001002f9                i686_isr65
+                0x00100302                i686_isr66
+                0x0010030b                i686_isr67
+                0x00100314                i686_isr68
+                0x0010031d                i686_isr69
+                0x00100326                i686_isr70
+                0x0010032f                i686_isr71
+                0x00100338                i686_isr72
+                0x00100341                i686_isr73
+                0x0010034a                i686_isr74
+                0x00100353                i686_isr75
+                0x0010035c                i686_isr76
+                0x00100365                i686_isr77
+                0x0010036e                i686_isr78
+                0x00100377                i686_isr79
+                0x00100380                i686_isr80
+                0x00100389                i686_isr81
+                0x00100392                i686_isr82
+                0x0010039b                i686_isr83
+                0x001003a4                i686_isr84
+                0x001003ad                i686_isr85
+                0x001003b6                i686_isr86
+                0x001003bf                i686_isr87
+                0x001003c8                i686_isr88
+                0x001003d1                i686_isr89
+                0x001003da                i686_isr90
+                0x001003e3                i686_isr91
+                0x001003ec                i686_isr92
+                0x001003f5                i686_isr93
+                0x001003fe                i686_isr94
+                0x00100407                i686_isr95
+                0x00100410                i686_isr96
+                0x00100419                i686_isr97
+                0x00100422                i686_isr98
+                0x0010042b                i686_isr99
+                0x00100434                i686_isr100
+                0x0010043d                i686_isr101
+                0x00100446                i686_isr102
+                0x0010044f                i686_isr103
+                0x00100458                i686_isr104
+                0x00100461                i686_isr105
+                0x0010046a                i686_isr106
+                0x00100473                i686_isr107
+                0x0010047c                i686_isr108
+                0x00100485                i686_isr109
+                0x0010048e                i686_isr110
+                0x00100497                i686_isr111
+                0x001004a0                i686_isr112
+                0x001004a9                i686_isr113
+                0x001004b2                i686_isr114
+                0x001004bb                i686_isr115
+                0x001004c4                i686_isr116
+                0x001004cd                i686_isr117
+                0x001004d6                i686_isr118
+                0x001004df                i686_isr119
+                0x001004e8                i686_isr120
+                0x001004f1                i686_isr121
+                0x001004fa                i686_isr122
+                0x00100503                i686_isr123
+                0x0010050c                i686_isr124
+                0x00100515                i686_isr125
+                0x0010051e                i686_isr126
+                0x00100527                i686_isr127
+                0x00100530                i686_isr128
+                0x0010053c                i686_isr129
+                0x00100548                i686_isr130
+                0x00100554                i686_isr131
+                0x00100560                i686_isr132
+                0x0010056c                i686_isr133
+                0x00100578                i686_isr134
+                0x00100584                i686_isr135
+                0x00100590                i686_isr136
+                0x0010059c                i686_isr137
+                0x001005a8                i686_isr138
+                0x001005b4                i686_isr139
+                0x001005c0                i686_isr140
+                0x001005cc                i686_isr141
+                0x001005d8                i686_isr142
+                0x001005e4                i686_isr143
+                0x001005f0                i686_isr144
+                0x001005fc                i686_isr145
+                0x00100608                i686_isr146
+                0x00100614                i686_isr147
+                0x00100620                i686_isr148
+                0x0010062c                i686_isr149
+                0x00100638                i686_isr150
+                0x00100644                i686_isr151
+                0x00100650                i686_isr152
+                0x0010065c                i686_isr153
+                0x00100668                i686_isr154
+                0x00100674                i686_isr155
+                0x00100680                i686_isr156
+                0x0010068c                i686_isr157
+                0x00100698                i686_isr158
+                0x001006a4                i686_isr159
+                0x001006b0                i686_isr160
+                0x001006bc                i686_isr161
+                0x001006c8                i686_isr162
+                0x001006d4                i686_isr163
+                0x001006e0                i686_isr164
+                0x001006ec                i686_isr165
+                0x001006f8                i686_isr166
+                0x00100704                i686_isr167
+                0x00100710                i686_isr168
+                0x0010071c                i686_isr169
+                0x00100728                i686_isr170
+                0x00100734                i686_isr171
+                0x00100740                i686_isr172
+                0x0010074c                i686_isr173
+                0x00100758                i686_isr174
+                0x00100764                i686_isr175
+                0x00100770                i686_isr176
+                0x0010077c                i686_isr177
+                0x00100788                i686_isr178
+                0x00100794                i686_isr179
+                0x001007a0                i686_isr180
+                0x001007ac                i686_isr181
+                0x001007b8                i686_isr182
+                0x001007c4                i686_isr183
+                0x001007d0                i686_isr184
+                0x001007dc                i686_isr185
+                0x001007e8                i686_isr186
+                0x001007f4                i686_isr187
+                0x00100800                i686_isr188
+                0x0010080c                i686_isr189
+                0x00100818                i686_isr190
+                0x00100824                i686_isr191
+                0x00100830                i686_isr192
+                0x0010083c                i686_isr193
+                0x00100848                i686_isr194
+                0x00100854                i686_isr195
+                0x00100860                i686_isr196
+                0x0010086c                i686_isr197
+                0x00100878                i686_isr198
+                0x00100884                i686_isr199
+                0x00100890                i686_isr200
+                0x0010089c                i686_isr201
+                0x001008a8                i686_isr202
+                0x001008b4                i686_isr203
+                0x001008c0                i686_isr204
+                0x001008cc                i686_isr205
+                0x001008d8                i686_isr206
+                0x001008e4                i686_isr207
+                0x001008f0                i686_isr208
+                0x001008fc                i686_isr209
+                0x00100908                i686_isr210
+                0x00100914                i686_isr211
+                0x00100920                i686_isr212
+                0x0010092c                i686_isr213
+                0x00100938                i686_isr214
+                0x00100944                i686_isr215
+                0x00100950                i686_isr216
+                0x0010095c                i686_isr217
+                0x00100968                i686_isr218
+                0x00100974                i686_isr219
+                0x00100980                i686_isr220
+                0x0010098c                i686_isr221
+                0x00100998                i686_isr222
+                0x001009a4                i686_isr223
+                0x001009b0                i686_isr224
+                0x001009bc                i686_isr225
+                0x001009c8                i686_isr226
+                0x001009d4                i686_isr227
+                0x001009e0                i686_isr228
+                0x001009ec                i686_isr229
+                0x001009f8                i686_isr230
+                0x00100a04                i686_isr231
+                0x00100a10                i686_isr232
+                0x00100a1c                i686_isr233
+                0x00100a28                i686_isr234
+                0x00100a34                i686_isr235
+                0x00100a40                i686_isr236
+                0x00100a4c                i686_isr237
+                0x00100a58                i686_isr238
+                0x00100a64                i686_isr239
+                0x00100a70                i686_isr240
+                0x00100a7c                i686_isr241
+                0x00100a85                i686_isr242
+                0x00100a8e                i686_isr243
+                0x00100a97                i686_isr244
+                0x00100aa0                i686_isr245
+                0x00100aa9                i686_isr246
+                0x00100ab2                i686_isr247
+                0x00100abb                i686_isr248
+                0x00100ac4                i686_isr249
+                0x00100acd                i686_isr250
+                0x00100ad6                i686_isr251
+                0x00100adf                i686_isr252
+                0x00100ae8                i686_isr253
+                0x00100af1                i686_isr254
+                0x00100afa                i686_isr255
+ .text          0x00100b30       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+                0x00100b30                i686_gdt_init
+ .text          0x00100b4d     0x1489 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+                0x00100b4d                i686_isr_init_gates
+ .text          0x00101fd6       0xba /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00101fd6                i686_idt_setgate
+                0x00102037                i686_idt_enablegate
+                0x00102057                i686_idt_disablegate
+                0x00102077                i686_idt_init
+ .text          0x00102090       0x62 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+                0x00102090                i686_isr_init
+                0x001020d2                i686_isr_handler
+ .text          0x001020f2      0x7f6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x001020f2                putclr
+                0x00102124                putchr
+                0x00102153                putc
+                0x00102263                puts
+                0x00102292                cls
+                0x00102300                setcrs
+                0x00102371                getchr
+                0x00102393                getclr
+                0x001023b8                scrlback
+                0x0010249f                printf
+                0x001027e4                printf_unsigned
+                0x0010288b                printf_signed
+ .text          0x001028e8       0xf5 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+                0x001028e8                memcpy
+                0x0010293a                memset
+                0x0010297d                memcmp
+ .text          0x001029dd       0x18 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+                0x001029dd                hal_init
+ .text          0x001029f5        0x5 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+                0x001029f5                end
+ *fill*         0x001029fa        0x6 
+ .text          0x00102a00      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                0x00102a00                __udivdi3
+ *fill*         0x00102b1a        0x6 
+ .text          0x00102b20      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x00102b20                __umoddi3
 
-.data           0x00100d30       0x30
-                0x00100d30                        __data_start = .
+.data           0x00102c60       0x30
+                0x00102c60                        __data_start = .
  *(.data)
- .data          0x00100d30       0x1e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
-                0x00100d30                g_gdt
-                0x00100d48                g_gdtdescriptor
- *fill*         0x00100d4e        0x2 
- .data          0x00100d50        0x6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00100d50                g_idtdescriptor
- *fill*         0x00100d56        0x2 
- .data          0x00100d58        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00100d58                g_screenbuf
-                0x00100d5c                hex_chars
- .data          0x00100d60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .data          0x00100d60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .data          0x00100d60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .data          0x00100d60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .data          0x00100d60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .data          0x00100d60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .data          0x00102c60       0x1e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+                0x00102c60                g_gdt
+                0x00102c78                g_gdtdescriptor
+ .data          0x00102c7e        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ *fill*         0x00102c7e        0x2 
+ .data          0x00102c80        0x6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00102c80                g_idtdescriptor
+ .data          0x00102c86        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ *fill*         0x00102c86        0x2 
+ .data          0x00102c88        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00102c88                g_screenbuf
+                0x00102c8c                hex_chars
+ .data          0x00102c90        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .data          0x00102c90        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .data          0x00102c90        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .data          0x00102c90        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .data          0x00102c90        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.rodata         0x00100d60       0xc2
-                0x00100d60                        __rodata_start = .
+.rodata         0x00102c90       0xd2
+                0x00102c90                        __rodata_start = .
  *(.rodata)
- .rodata        0x00100d60       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00100d60                SCR_W
-                0x00100d64                SCR_H
- .rodata        0x00100e11       0x11 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .rodata        0x00102c90        0xe /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ *fill*         0x00102c9e        0x2 
+ .rodata        0x00102ca0       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00102ca0                SCR_W
+                0x00102ca4                SCR_H
+ .rodata        0x00102d51       0x11 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
 
-.eh_frame       0x00100e24       0xd8
- .eh_frame      0x00100e24       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .eh_frame      0x00100e88       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+.eh_frame       0x00102d64       0xd8
+ .eh_frame      0x00102d64       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .eh_frame      0x00102dc8       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.bss            0x00100f00      0x708
-                0x00100f00                        __bss_start = .
+.bss            0x00102e40      0x808
+                0x00102e40                        __bss_start = .
  *(.bss)
- .bss           0x00100f00        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .bss           0x00100f00      0x700 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00100f00                g_idt
- .bss           0x00101600        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00101600                g_screenx
-                0x00101604                g_screeny
- .bss           0x00101608        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .bss           0x00101608        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .bss           0x00101608        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .bss           0x00101608        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .bss           0x00101608        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .bss           0x00101608        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
-                0x00101608                        __end = .
+ .bss           0x00102e40        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+ .bss           0x00102e40        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .bss           0x00102e40      0x800 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00102e40                g_idt
+ .bss           0x00103640        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .bss           0x00103640        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00103640                g_screenx
+                0x00103644                g_screeny
+ .bss           0x00103648        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .bss           0x00103648        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .bss           0x00103648        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .bss           0x00103648        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .bss           0x00103648        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x00103648                        __end = .
 OUTPUT(/home/zaccaria/Scrivania/Proj/ZerOS/build/kernel.bin binary)
 
-.debug_info     0x00000000     0x146e
+.debug_info     0x00000000     0x2305
  .debug_info    0x00000000      0x1f8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .debug_info    0x000001f8      0x24b /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
- .debug_info    0x00000443      0x588 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
- .debug_info    0x000009cb      0x1e8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .debug_info    0x00000bb3       0x99 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .debug_info    0x00000c4c       0x65 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .debug_info    0x00000cb1      0x132 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .debug_info    0x00000de3      0x33a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .debug_info    0x0000111d      0x351 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .debug_info    0x000001f8      0xd0a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .debug_info    0x00000f02      0x24c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+ .debug_info    0x0000114e      0x1e4 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .debug_info    0x00001332      0x588 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+ .debug_info    0x000018ba      0x1e8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .debug_info    0x00001aa2       0xa6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .debug_info    0x00001b48      0x132 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .debug_info    0x00001c7a      0x33a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_info    0x00001fb4      0x351 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.debug_abbrev   0x00000000      0x93b
+.debug_abbrev   0x00000000      0xaf6
  .debug_abbrev  0x00000000       0xf1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .debug_abbrev  0x000000f1      0x112 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
- .debug_abbrev  0x00000203      0x203 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
- .debug_abbrev  0x00000406       0xe2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .debug_abbrev  0x000004e8       0x5a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .debug_abbrev  0x00000542       0x26 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .debug_abbrev  0x00000568      0x107 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .debug_abbrev  0x0000066f      0x15b /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .debug_abbrev  0x000007ca      0x171 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .debug_abbrev  0x000000f1       0xbf /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .debug_abbrev  0x000001b0      0x123 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+ .debug_abbrev  0x000002d3      0x111 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .debug_abbrev  0x000003e4      0x203 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+ .debug_abbrev  0x000005e7       0xe2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .debug_abbrev  0x000006c9       0x5a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .debug_abbrev  0x00000723      0x107 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .debug_abbrev  0x0000082a      0x15b /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_abbrev  0x00000985      0x171 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.debug_aranges  0x00000000      0x120
+.debug_aranges  0x00000000      0x148
  .debug_aranges
                 0x00000000       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
  .debug_aranges
-                0x00000020       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00000020       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
  .debug_aranges
-                0x00000040       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00000040       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
  .debug_aranges
-                0x00000060       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+                0x00000060       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
  .debug_aranges
-                0x00000080       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+                0x00000080       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
  .debug_aranges
-                0x000000a0       0x18 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
+                0x000000a0       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
  .debug_aranges
-                0x000000b8       0x28 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+                0x000000c0       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
  .debug_aranges
-                0x000000e0       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                0x000000e0       0x28 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
  .debug_aranges
-                0x00000100       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x00000108       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_aranges
+                0x00000128       0x20 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.debug_line     0x00000000      0x9e1
+.debug_line     0x00000000      0xca2
  .debug_line    0x00000000       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .debug_line    0x00000064       0x9a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
- .debug_line    0x000000fe      0x39b /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
- .debug_line    0x00000499       0xd4 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .debug_line    0x0000056d       0x5e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .debug_line    0x000005cb       0x35 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .debug_line    0x00000600       0x89 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .debug_line    0x00000689      0x180 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .debug_line    0x00000809      0x1d8 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .debug_line    0x00000064      0x263 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .debug_line    0x000002c7       0x93 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+ .debug_line    0x0000035a       0x93 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .debug_line    0x000003ed      0x39b /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+ .debug_line    0x00000788       0xd4 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .debug_line    0x0000085c       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .debug_line    0x000008c0       0x8a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .debug_line    0x0000094a      0x180 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_line    0x00000aca      0x1d8 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.debug_str      0x00000000     0x1150
+.debug_str      0x00000000     0x1f47
  .debug_str     0x00000000      0x2f9 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .debug_str     0x000002f9      0x28b /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
- .debug_str     0x00000584      0x3d2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
- .debug_str     0x00000956      0x11e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .debug_str     0x00000a74       0xf4 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .debug_str     0x00000b68       0xcf /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .debug_str     0x00000c37      0x11f /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .debug_str     0x00000d56      0x1fd /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .debug_str     0x00000f53      0x1fd /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .debug_str     0x000002f9      0xd59 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .debug_str     0x00001052      0x27c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+ .debug_str     0x000012ce      0x16e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .debug_str     0x0000143c      0x3d2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+ .debug_str     0x0000180e      0x11e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .debug_str     0x0000192c      0x102 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .debug_str     0x00001a2e      0x11f /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .debug_str     0x00001b4d      0x1fd /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_str     0x00001d4a      0x1fd /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
 .debug_line_str
-                0x00000000      0x871
+                0x00000000      0xa32
  .debug_line_str
                 0x00000000      0x109 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
  .debug_line_str
-                0x00000109      0x109 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00000109      0x12a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
  .debug_line_str
-                0x00000212      0x129 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00000233      0x109 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
  .debug_line_str
-                0x0000033b       0xfd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+                0x0000033c      0x123 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
  .debug_line_str
-                0x00000438       0xa9 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+                0x0000045f      0x129 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
  .debug_line_str
-                0x000004e1       0x92 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
+                0x00000588       0xfd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
  .debug_line_str
-                0x00000573      0x106 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+                0x00000685       0xaf /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
  .debug_line_str
-                0x00000679       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                0x00000734      0x106 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
  .debug_line_str
-                0x00000775       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x0000083a       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .debug_line_str
+                0x00000936       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.comment        0x00000000       0xab
+.comment        0x00000000       0xbe
  .comment       0x00000000       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .comment       0x00000013       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
- .comment       0x00000026       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
- .comment       0x00000039       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .comment       0x0000004c       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .comment       0x0000005f       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/binary.obj
- .comment       0x00000072       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
- .comment       0x00000085       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .comment       0x00000098       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .comment       0x00000013       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .comment       0x00000026       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+ .comment       0x00000039       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .comment       0x0000004c       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+ .comment       0x0000005f       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .comment       0x00000072       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .comment       0x00000085       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .comment       0x00000098       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .comment       0x000000ab       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.debug_frame    0x00000000      0x354
+.debug_frame    0x00000000      0x3dc
  .debug_frame   0x00000000       0x34 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .debug_frame   0x00000034       0x94 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
- .debug_frame   0x000000c8      0x198 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
- .debug_frame   0x00000260       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .debug_frame   0x000002d4       0x34 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
- .debug_frame   0x00000308       0x4c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
+ .debug_frame   0x00000034       0x34 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .debug_frame   0x00000068       0x94 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+ .debug_frame   0x000000fc       0x54 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .debug_frame   0x00000150      0x198 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+ .debug_frame   0x000002e8       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .debug_frame   0x0000035c       0x34 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/hal/hal.obj
+ .debug_frame   0x00000390       0x4c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./main.obj
 
 .debug_rnglists
                 0x00000000       0x62

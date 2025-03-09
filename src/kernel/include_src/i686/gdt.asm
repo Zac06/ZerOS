@@ -15,7 +15,8 @@ i686_gdt_load:
     push eax            ;tricking the stack into making a far jump: using the retf instruction, it takes the addess of the .reload_cs codepiece, hence it jumps to it
     push .reload_cs
     retf
-    .reload_cs:
+
+.reload_cs:
 
 
     mov ax, [ebp+16]

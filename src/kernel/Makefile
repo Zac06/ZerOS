@@ -25,11 +25,11 @@ $(BUILD_DIR)/kernel.bin: $(OBJECTS_ASM) $(OBJECTS_C)
 
 $(BUILD_DIR)/kernel/c/%.obj: %.c $(HEADERS_C)
 	@mkdir -p $(@D)
-	$(TARGET_CC) $(TARGET_CFLAGS) -c -o $@ $<
+	@$(TARGET_CC) $(TARGET_CFLAGS) -c -o $@ $<
 
 $(BUILD_DIR)/kernel/asm/%.obj: %.asm $(HEADERS_ASM)
 	@mkdir -p $(@D)
-	$(TARGET_ASM) $(TARGET_ASMFLAGS) -o $@ $<
+	@$(TARGET_ASM) $(TARGET_ASMFLAGS) -o $@ $<
 
 always:
 	mkdir -p $(BUILD_DIR)/kernel/c

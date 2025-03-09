@@ -4,4 +4,4 @@
     x|=flag
 
 #define FLAG_UNSET(x, flag)\
-    x&=(~flag)
+    x&=~(flag)

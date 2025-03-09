@@ -5,7 +5,7 @@
 idt_entry g_idt[IDT_SIZE];
 idt_descr g_idtdescriptor={sizeof(g_idt)-1, g_idt};
 
-void __attribute((cdecl)) i686_idt_load(idt_descr* descriptor);
+void __attribute__((cdecl)) i686_idt_load(idt_descr* descriptor);
 
 void i686_idt_setgate(int interrno, void* base, uint16_t seg_descr, uint8_t flags){
     g_idt[interrno].base_low=((uint32_t)base)&0xffff;
