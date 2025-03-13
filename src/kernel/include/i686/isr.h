@@ -2,6 +2,10 @@
 
 #include<stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
     //since the stack is "reversed", take the values in the reverse order in which they are pushed
     uint32_t ds;
@@ -31,3 +35,7 @@ typedef void (*isr_handler)(registers* regs);
 void i686_isr_init();
 void __attribute__((cdecl)) i686_isr_handler(registers* regs);
 void i686_isr_register_handler(int interrno, isr_handler handler);
+
+#ifdef __cplusplus
+}
+#endif

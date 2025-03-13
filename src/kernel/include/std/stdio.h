@@ -3,6 +3,10 @@
 #include <stdint.h>
 #include <stdarg.h>
 
+#ifdef __cplusplus
+    extern "C" {
+#endif
+
 enum CLR_ATTRIBUTES {
     CLR_FG_BLACK            =0x00,
     CLR_FG_BLUE,
@@ -49,3 +53,7 @@ void printf(const char* fmt, ...);
 void cls();
 void setcrs(int x, int y);
 void scrlback(int lines);
+
+#ifdef __cplusplus
+}
+#endif

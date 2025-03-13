@@ -1,6 +1,10 @@
 #pragma once
 #include<stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
     uint16_t base_low;
     uint16_t segment_selector;
@@ -37,3 +41,7 @@ void i686_idt_init();
 void i686_idt_setgate(int interrno, void* base, uint16_t seg_descr, uint8_t flags);
 void i686_idt_enablegate(int interrno);
 void i686_idt_disablegate(int interrno);
+
+#ifdef __cplusplus
+}
+#endif

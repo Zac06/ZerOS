@@ -18,7 +18,8 @@
         "idt.h": "c",
         "gdt.h": "c",
         "io.h": "c",
-        "irq.h": "c"
+        "irq.h": "c",
+        "hal.hpp": "c"
     },
     "files.exclude": {
         "toolchain/**": true
