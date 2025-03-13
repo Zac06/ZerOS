@@ -20,7 +20,7 @@ void i686_irq_handler(registers* regs){
 }
 
 void irq_driver::init(){
-    pic_driver::init(PIC_REMAP_OFFSET, PIC_REMAP_OFFSET+8, true);
+    pic_driver::init(PIC_REMAP_OFFSET, PIC_REMAP_OFFSET+8, false);
     g_irqhandlers=a_irqhandlers;
 
     //set a common interrupt service routine for all interrupt lines

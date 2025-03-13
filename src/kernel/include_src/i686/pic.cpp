@@ -11,6 +11,8 @@ bool pic_driver::a_auto_eoi=false;
 /// @param offsetpic2 ICW2 for the slave PIC
 /// @param auto_eoi Whether to use automatic EOI or not
 void pic_driver::init(uint8_t offsetpic1, uint8_t offsetpic2, bool auto_eoi){
+    a_auto_eoi=auto_eoi;
+
     disable();
 
     //Send ICW1 to both PICs
@@ -49,7 +51,8 @@ void pic_driver::init(uint8_t offsetpic1, uint8_t offsetpic2, bool auto_eoi){
     i686_iowait();
 
     disable();
-    //setmask(0x0000);
+    //setmask(0x0001);
+    //unmask(0);
 }
 
 /// @brief Probes the PICs to see if they are working
@@ -79,40 +82,13 @@ void pic_driver::send_eoi(int irq){
 /// @brief Masks (disables) the specified interrupt line
 /// @param irq The interrupt line to mask
 void pic_driver::mask(int irq){
-    uint8_t currentmask;
-    int port;
-
-    a_mask|=(1<<irq);
-    if(irq<8){         //this is needed to identify whether the interrupt line is on the master or slave PIC
-        currentmask=a_mask&0xff;
-        port=PIC1_DATA_PORT;
-    }else{
-        irq-=8;         //this is needed to mask the correct interrupt line on the slave PIC
-        currentmask=a_mask>>8;
-        port=PIC2_DATA_PORT;
-    }
-
-    i686_outb(port,  currentmask | (1 << irq));
+    setmask(1<<irq);
 }
 
 /// @brief Unmasks (enables) the specified interrupt line
 /// @param irq The interrupt line to unmask
 void pic_driver::unmask(int irq){
-    uint8_t currentmask;
-    int port;
-
-    a_mask&=~(1 << irq);
-    if(irq<8){         //this is needed to identify whether the interrupt line is on the master or slave PIC
-        currentmask=a_mask&0xff;
-        port=PIC1_DATA_PORT;
-    }else{
-        irq-=8;         //this is needed to unmask the correct interrupt line on the slave PIC
-        currentmask=a_mask>>8;
-        port=PIC2_DATA_PORT;
-    }
-
-    i686_outb(PIC2_DATA_PORT,  currentmask & ~(1 << irq));
-    
+    setmask(~(1 << irq));
 }
 
 uint16_t pic_driver::getmask(){
