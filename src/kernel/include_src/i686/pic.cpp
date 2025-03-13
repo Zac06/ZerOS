@@ -82,13 +82,13 @@ void pic_driver::send_eoi(int irq){
 /// @brief Masks (disables) the specified interrupt line
 /// @param irq The interrupt line to mask
 void pic_driver::mask(int irq){
-    setmask(1<<irq);
+    setmask(a_mask|1<<irq);
 }
 
 /// @brief Unmasks (enables) the specified interrupt line
 /// @param irq The interrupt line to unmask
 void pic_driver::unmask(int irq){
-    setmask(~(1 << irq));
+    setmask(a_mask&~(1 << irq));
 }
 
 uint16_t pic_driver::getmask(){
