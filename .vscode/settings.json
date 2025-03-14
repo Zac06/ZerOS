@@ -19,7 +19,14 @@
         "gdt.h": "c",
         "io.h": "c",
         "irq.h": "c",
-        "hal.hpp": "c"
+        "hal.hpp": "c",
+        "*.tcc": "cpp",
+        "unordered_map": "cpp",
+        "fstream": "cpp",
+        "istream": "cpp",
+        "numeric": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp"
     },
     "files.exclude": {
         "toolchain/**": true

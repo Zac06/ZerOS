@@ -29,6 +29,9 @@ void irq_driver::init(){
     }
 
     i686_enaint();
+
+    pic_driver::unmask(0);
+    pic_driver::unmask(1);
 }
 
 void irq_driver::register_handler(int irq, irq_handler handler){

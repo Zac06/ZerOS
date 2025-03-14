@@ -5,6 +5,7 @@ global i686_halt
 global i686_crash
 global i686_enaint
 global i686_disint
+global i686_panic
 
 i686_outb:
     [bits 32]
