@@ -1,14 +1,21 @@
-#include<ps2/ps2.hpp>
+#include<ps2/ps2_driver.hpp>
 #include<i686/io.h>
 #include<stdint.h>
 #include<util/error.h>
+#include<util/array.hpp>
+#include<stddef.h>
 
 ps2_driver::ps2_driver(bool p_port_no)
     :port_no(p_port_no)
 {
+    disable();
+    
+
     if(port_no==PS2_2ND_CONTROLLER&&!check_port2_available()){
         terminate("PS/2 port 2 not available. Terminating.");
     }
+
+    
 
     if(!test_controller()){
         terminate("PS/2 controller self test failed. Terminating.");
@@ -22,17 +29,18 @@ ps2_driver::ps2_driver(bool p_port_no)
         }
     }
 
-    disable();
-    flush_outbuf();
     disable_irq();
-    disable_translation();
+    flush_outbuf();
 
-    enable();
-    enable_irq();
+    //sets the scancode set to 2, which is the standard.
+    disable_translation();
 
     if(!reset()){
         terminate("PS/2 controller reset failed. Terminating.");
     }
+
+    enable_irq();
+    enable();
 }
 
 /*void ps2_driver::init(bool p_port_no){
@@ -182,7 +190,79 @@ bool ps2_driver::reset(){
         (ret1!=PS2_RESET_SUCCESS2||ret2!=PS2_RESET_SUCCESS1)){
             return true;
         }
-    
-    terminate("PS/2 controller reset failed. Terminating.");
+
     return false;
+}
+
+const ps2_dev_type* ps2_driver::identify(){
+    int i=0;
+    const int attempts=3;
+    for(i=0; i<attempts; i++){
+        //printf("sending disable scan\n");
+        i686_outb(PS2_DATA_PORT, PS2DEV_DISABLE_SCAN);
+        i686_iowait();
+        //printf("sent disable scan\n");
+
+        uint8_t answ=i686_inb(PS2_DATA_PORT);
+        if(answ==PS2DEV_ACK){
+            //printf("ACK1\n");
+            break;
+        }else if(answ==PS2DEV_RESEND){
+            printf("Disabling scanning...\n");
+        }
+    }
+    if(i==3){
+        terminate("Error while trying to disable scanning on the device. Terminating.");
+    }
+
+    for(i=0; i<attempts; i++){
+        //printf("sending identify\n");
+        i686_outb(PS2_DATA_PORT, PS2DEV_IDENTIFY);
+        i686_iowait();
+        
+        //printf("sent identify\n");
+
+        uint8_t answ=i686_inb(PS2_DATA_PORT);
+        //printf("ANSW1: %x\n", answ);
+        if(answ==PS2DEV_ACK){
+            //printf("ACK2\n");
+            break;
+        }else if(answ==PS2DEV_RESEND){
+            printf("Identifying ps2_devtype...\n");
+        }
+    }
+    if(i==3){
+        terminate("Error while trying to identify the device. Terminating.");
+    }
+
+    uint16_t type=i686_inb(PS2_DATA_PORT);
+    
+    for(i=0; i<arrsize(devtypes); i++){
+        //printf("READBYTES: 0x%x\n", type);
+        //printf("DEVTYPE[i]: 0x%x\n", devtypes[i].id);
+        if(type==(devtypes[i].id)){
+            break;
+        }
+        if(type==(devtypes[i].id&0xff)){
+            type|=(i686_inb(PS2_DATA_PORT)<<8);
+            i--;
+        }
+    }
+
+    //printf("sending enable scan\n");
+    i686_outb(PS2_DATA_PORT, PS2DEV_ENABLE_SCAN);
+    i686_iowait();
+    uint8_t ack=i686_inb(PS2_DATA_PORT);
+    
+    if(ack!=PS2DEV_ACK){
+        terminate("Could not re-enable device. Terminating.");
+    }
+
+    //printf("sent enable scan\n");
+
+    if(i==arrsize(devtypes)){
+        return NULL;
+    }
+
+    return &devtypes[i];
 }

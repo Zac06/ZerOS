@@ -2,7 +2,7 @@
 
 TARGET_ASMFLAGS+= -f elf
 TARGET_CFLAGS+= -ffreestanding -nostdlib -Iinclude
-TARGET_CXXFLAGS+= -ffreestanding -nostdlib -Iinclude
+TARGET_CXXFLAGS+= -ffreestanding -nostdlib -Iinclude -fno-rtti
 TARGET_LIBS+= -lgcc
 TARGET_LINKFLAGS+= -T linker.ld -nostdlib
 

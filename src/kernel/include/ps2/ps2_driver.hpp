@@ -98,6 +98,17 @@ struct ps2_dev_type {
     const char* name;
 };
 
+typedef enum {
+    PS2DEV_IDENTIFY                 =0xf2,
+    PS2DEV_ENABLE_SCAN              =0xf4,
+    PS2DEV_DISABLE_SCAN             =0xf5,
+    PS2DEV_SETDEFAULT               =0xf6,
+    PS2DEV_ACK                      =0xfa,
+    PS2DEV_RESEND                   =0xfe,
+    PS2DEV_RESET                    =0xff
+} ps2_dev_cmds;
+
+
 static ps2_dev_type devtypes[] ={
     {0x00,              "Standard PS/2 mouse"},
     {0x03,              "Mouse with scroll wheel"},
@@ -110,7 +121,7 @@ static ps2_dev_type devtypes[] ={
     {0xab|(0x90<<8),    "Japanese \"G\" keyboard"},
     {0xab|(0x91<<8),    "Japanese \"P\" keyboard"},
     {0xab|(0x92<<8),    "Japanese \"A\" keyboard"},
-    {0xac|(0xa1<<8),    "NCD Sun layout keyboard"},
+    {0xac|(0xa1<<8),    "NCD Sun layout keyboard"}
 
 };
 
@@ -133,4 +144,6 @@ class ps2_driver {
         void disable_translation();
         bool check_port2_available();
         bool reset();
+
+        const ps2_dev_type* identify(); 
 };

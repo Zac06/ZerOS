@@ -5,7 +5,9 @@ Archive member included to satisfy reference by file (symbol)
 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
                               /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj (__umoddi3)
 
-There are no discarded input sections
+Discarded input sections
+
+ .group         0x00000000        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
 
 Memory Configuration
 
@@ -26,7 +28,8 @@ LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.o
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
-LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
 LOAD /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
@@ -35,441 +38,456 @@ LOAD /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.
                 0x00100000                        phys = 0x100000
                 0x00100000                        . = phys
 
-.entry          0x00100000       0x84
+.entry          0x00100000       0xb9
                 0x00100000                        __entry_start = .
  *(.entry)
- .entry         0x00100000       0x84 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .entry         0x00100000       0xb9 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
                 0x00100000                start
 
-.text           0x00100090     0x36ce
-                0x00100090                        __text_start = .
+.text           0x001000c0     0x38de
+                0x001000c0                        __text_start = .
  *(.text)
- .text          0x00100090       0x25 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/gdt.obj
-                0x00100090                i686_gdt_load
- *fill*         0x001000b5        0xb 
- .text          0x001000c0        0xd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/idt.obj
-                0x001000c0                i686_idt_load
- *fill*         0x001000cd        0x3 
- .text          0x001000d0       0x25 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/io.obj
-                0x001000d0                i686_outb
-                0x001000db                i686_inb
-                0x001000e7                i686_halt
-                0x001000e9                i686_crash
-                0x001000f1                i686_enaint
-                0x001000f3                i686_disint
- *fill*         0x001000f5        0xb 
- .text          0x00100100      0xa70 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/isr.obj
-                0x00100100                i686_isr0
-                0x00100109                i686_isr1
-                0x00100112                i686_isr2
-                0x0010011b                i686_isr3
-                0x00100124                i686_isr4
-                0x0010012d                i686_isr5
-                0x00100136                i686_isr6
-                0x0010013f                i686_isr7
-                0x00100148                i686_isr8
-                0x0010014f                i686_isr9
-                0x00100158                i686_isr10
-                0x0010015f                i686_isr11
-                0x00100166                i686_isr12
-                0x0010016d                i686_isr13
-                0x00100174                i686_isr14
-                0x0010017b                i686_isr15
-                0x00100184                i686_isr16
-                0x0010018d                i686_isr17
-                0x00100194                i686_isr18
-                0x0010019d                i686_isr19
-                0x001001a6                i686_isr20
-                0x001001af                i686_isr21
-                0x001001b6                i686_isr22
-                0x001001bf                i686_isr23
-                0x001001c8                i686_isr24
-                0x001001d1                i686_isr25
-                0x001001da                i686_isr26
-                0x001001e3                i686_isr27
-                0x001001ec                i686_isr28
-                0x001001f5                i686_isr29
-                0x001001fe                i686_isr30
-                0x00100207                i686_isr31
-                0x00100210                i686_isr32
-                0x00100219                i686_isr33
-                0x00100222                i686_isr34
-                0x0010022b                i686_isr35
-                0x00100234                i686_isr36
-                0x0010023d                i686_isr37
-                0x00100246                i686_isr38
-                0x0010024f                i686_isr39
-                0x00100258                i686_isr40
-                0x00100261                i686_isr41
-                0x0010026a                i686_isr42
-                0x00100273                i686_isr43
-                0x0010027c                i686_isr44
-                0x00100285                i686_isr45
-                0x0010028e                i686_isr46
-                0x00100297                i686_isr47
-                0x001002a0                i686_isr48
-                0x001002a9                i686_isr49
-                0x001002b2                i686_isr50
-                0x001002bb                i686_isr51
-                0x001002c4                i686_isr52
-                0x001002cd                i686_isr53
-                0x001002d6                i686_isr54
-                0x001002df                i686_isr55
-                0x001002e8                i686_isr56
-                0x001002f1                i686_isr57
-                0x001002fa                i686_isr58
-                0x00100303                i686_isr59
-                0x0010030c                i686_isr60
-                0x00100315                i686_isr61
-                0x0010031e                i686_isr62
-                0x00100327                i686_isr63
-                0x00100330                i686_isr64
-                0x00100339                i686_isr65
-                0x00100342                i686_isr66
-                0x0010034b                i686_isr67
-                0x00100354                i686_isr68
-                0x0010035d                i686_isr69
-                0x00100366                i686_isr70
-                0x0010036f                i686_isr71
-                0x00100378                i686_isr72
-                0x00100381                i686_isr73
-                0x0010038a                i686_isr74
-                0x00100393                i686_isr75
-                0x0010039c                i686_isr76
-                0x001003a5                i686_isr77
-                0x001003ae                i686_isr78
-                0x001003b7                i686_isr79
-                0x001003c0                i686_isr80
-                0x001003c9                i686_isr81
-                0x001003d2                i686_isr82
-                0x001003db                i686_isr83
-                0x001003e4                i686_isr84
-                0x001003ed                i686_isr85
-                0x001003f6                i686_isr86
-                0x001003ff                i686_isr87
-                0x00100408                i686_isr88
-                0x00100411                i686_isr89
-                0x0010041a                i686_isr90
-                0x00100423                i686_isr91
-                0x0010042c                i686_isr92
-                0x00100435                i686_isr93
-                0x0010043e                i686_isr94
-                0x00100447                i686_isr95
-                0x00100450                i686_isr96
-                0x00100459                i686_isr97
-                0x00100462                i686_isr98
-                0x0010046b                i686_isr99
-                0x00100474                i686_isr100
-                0x0010047d                i686_isr101
-                0x00100486                i686_isr102
-                0x0010048f                i686_isr103
-                0x00100498                i686_isr104
-                0x001004a1                i686_isr105
-                0x001004aa                i686_isr106
-                0x001004b3                i686_isr107
-                0x001004bc                i686_isr108
-                0x001004c5                i686_isr109
-                0x001004ce                i686_isr110
-                0x001004d7                i686_isr111
-                0x001004e0                i686_isr112
-                0x001004e9                i686_isr113
-                0x001004f2                i686_isr114
-                0x001004fb                i686_isr115
-                0x00100504                i686_isr116
-                0x0010050d                i686_isr117
-                0x00100516                i686_isr118
-                0x0010051f                i686_isr119
-                0x00100528                i686_isr120
-                0x00100531                i686_isr121
-                0x0010053a                i686_isr122
-                0x00100543                i686_isr123
-                0x0010054c                i686_isr124
-                0x00100555                i686_isr125
-                0x0010055e                i686_isr126
-                0x00100567                i686_isr127
-                0x00100570                i686_isr128
-                0x0010057c                i686_isr129
-                0x00100588                i686_isr130
-                0x00100594                i686_isr131
-                0x001005a0                i686_isr132
-                0x001005ac                i686_isr133
-                0x001005b8                i686_isr134
-                0x001005c4                i686_isr135
-                0x001005d0                i686_isr136
-                0x001005dc                i686_isr137
-                0x001005e8                i686_isr138
-                0x001005f4                i686_isr139
-                0x00100600                i686_isr140
-                0x0010060c                i686_isr141
-                0x00100618                i686_isr142
-                0x00100624                i686_isr143
-                0x00100630                i686_isr144
-                0x0010063c                i686_isr145
-                0x00100648                i686_isr146
-                0x00100654                i686_isr147
-                0x00100660                i686_isr148
-                0x0010066c                i686_isr149
-                0x00100678                i686_isr150
-                0x00100684                i686_isr151
-                0x00100690                i686_isr152
-                0x0010069c                i686_isr153
-                0x001006a8                i686_isr154
-                0x001006b4                i686_isr155
-                0x001006c0                i686_isr156
-                0x001006cc                i686_isr157
-                0x001006d8                i686_isr158
-                0x001006e4                i686_isr159
-                0x001006f0                i686_isr160
-                0x001006fc                i686_isr161
-                0x00100708                i686_isr162
-                0x00100714                i686_isr163
-                0x00100720                i686_isr164
-                0x0010072c                i686_isr165
-                0x00100738                i686_isr166
-                0x00100744                i686_isr167
-                0x00100750                i686_isr168
-                0x0010075c                i686_isr169
-                0x00100768                i686_isr170
-                0x00100774                i686_isr171
-                0x00100780                i686_isr172
-                0x0010078c                i686_isr173
-                0x00100798                i686_isr174
-                0x001007a4                i686_isr175
-                0x001007b0                i686_isr176
-                0x001007bc                i686_isr177
-                0x001007c8                i686_isr178
-                0x001007d4                i686_isr179
-                0x001007e0                i686_isr180
-                0x001007ec                i686_isr181
-                0x001007f8                i686_isr182
-                0x00100804                i686_isr183
-                0x00100810                i686_isr184
-                0x0010081c                i686_isr185
-                0x00100828                i686_isr186
-                0x00100834                i686_isr187
-                0x00100840                i686_isr188
-                0x0010084c                i686_isr189
-                0x00100858                i686_isr190
-                0x00100864                i686_isr191
-                0x00100870                i686_isr192
-                0x0010087c                i686_isr193
-                0x00100888                i686_isr194
-                0x00100894                i686_isr195
-                0x001008a0                i686_isr196
-                0x001008ac                i686_isr197
-                0x001008b8                i686_isr198
-                0x001008c4                i686_isr199
-                0x001008d0                i686_isr200
-                0x001008dc                i686_isr201
-                0x001008e8                i686_isr202
-                0x001008f4                i686_isr203
-                0x00100900                i686_isr204
-                0x0010090c                i686_isr205
-                0x00100918                i686_isr206
-                0x00100924                i686_isr207
-                0x00100930                i686_isr208
-                0x0010093c                i686_isr209
-                0x00100948                i686_isr210
-                0x00100954                i686_isr211
-                0x00100960                i686_isr212
-                0x0010096c                i686_isr213
-                0x00100978                i686_isr214
-                0x00100984                i686_isr215
-                0x00100990                i686_isr216
-                0x0010099c                i686_isr217
-                0x001009a8                i686_isr218
-                0x001009b4                i686_isr219
-                0x001009c0                i686_isr220
-                0x001009cc                i686_isr221
-                0x001009d8                i686_isr222
-                0x001009e4                i686_isr223
-                0x001009f0                i686_isr224
-                0x001009fc                i686_isr225
-                0x00100a08                i686_isr226
-                0x00100a14                i686_isr227
-                0x00100a20                i686_isr228
-                0x00100a2c                i686_isr229
-                0x00100a38                i686_isr230
-                0x00100a44                i686_isr231
-                0x00100a50                i686_isr232
-                0x00100a5c                i686_isr233
-                0x00100a68                i686_isr234
-                0x00100a74                i686_isr235
-                0x00100a80                i686_isr236
-                0x00100a8c                i686_isr237
-                0x00100a98                i686_isr238
-                0x00100aa4                i686_isr239
-                0x00100ab0                i686_isr240
-                0x00100abc                i686_isr241
-                0x00100ac5                i686_isr242
-                0x00100ace                i686_isr243
-                0x00100ad7                i686_isr244
-                0x00100ae0                i686_isr245
-                0x00100ae9                i686_isr246
-                0x00100af2                i686_isr247
-                0x00100afb                i686_isr248
-                0x00100b04                i686_isr249
-                0x00100b0d                i686_isr250
-                0x00100b16                i686_isr251
-                0x00100b1f                i686_isr252
-                0x00100b28                i686_isr253
-                0x00100b31                i686_isr254
-                0x00100b3a                i686_isr255
- .text          0x00100b70       0x1b /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
-                0x00100b70                i686_iowait
- .text          0x00100b8b       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
-                0x00100b8b                i686_gdt_init
- .text          0x00100ba8     0x1489 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
-                0x00100ba8                i686_isr_init_gates
- .text          0x00102031       0xba /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00102031                i686_idt_setgate
-                0x00102092                i686_idt_enablegate
-                0x001020b2                i686_idt_disablegate
-                0x001020d2                i686_idt_init
- .text          0x001020eb      0x1f6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
-                0x001020eb                i686_isr_init
-                0x0010212d                i686_isr_handler
-                0x001022bd                i686_isr_register_handler
- .text          0x001022e1      0x7f6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x001022e1                putclr
-                0x00102313                putchr
-                0x00102342                putc
-                0x00102452                puts
-                0x00102481                cls
-                0x001024ef                setcrs
-                0x00102560                getchr
-                0x00102582                getclr
-                0x001025a7                scrlback
-                0x0010268e                printf
-                0x001029d3                printf_unsigned
-                0x00102a7a                printf_signed
- .text          0x00102ad7       0xf5 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
-                0x00102ad7                memcpy
-                0x00102b29                memset
-                0x00102b6c                memcmp
- .text          0x00102bcc       0x21 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
-                0x00102bcc                terminate
- *fill*         0x00102bed        0x1 
- .text          0x00102bee      0x516 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
-                0x00102bee                _ZN10ps2_driverC1Eb
-                0x00102bee                _ZN10ps2_driverC2Eb
-                0x00102d24                _ZN10ps2_driver15test_controllerEv
-                0x00102d6a                _ZN10ps2_driver9test_portEv
-                0x00102dc6                _ZN10ps2_driver7disableEv
-                0x00102e08                _ZN10ps2_driver6enableEv
-                0x00102e4a                _ZN10ps2_driver12flush_outbufEv
-                0x00102e84                _ZN10ps2_driver11flush_inbufEv
-                0x00102ebe                _ZN10ps2_driver11disable_irqEv
-                0x00102f3c                _ZN10ps2_driver10enable_irqEv
-                0x00102fba                _ZN10ps2_driver19disable_translationEv
-                0x00103024                _ZN10ps2_driver21check_port2_availableEv
-                0x00103062                _ZN10ps2_driver5resetEv
- .text          0x00103104      0x2ae /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
-                0x00103104                _ZN10pic_driver4initEhhb
-                0x00103224                _ZN10pic_driver5probeEv
-                0x0010324e                _ZN10pic_driver7disableEv
-                0x00103268                _ZN10pic_driver8send_eoiEi
-                0x00103298                _ZN10pic_driver4maskEi
-                0x001032ca                _ZN10pic_driver6unmaskEi
-                0x001032fe                _ZN10pic_driver7getmaskEv
-                0x0010330a                _ZN10pic_driver7setmaskEt
-                0x00103366                _ZN10pic_driver8readmaskEv
- .text          0x001033b2       0xe7 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
-                0x001033b2                _Z16i686_irq_handlerP9registers
-                0x00103418                _ZN10irq_driver4initEv
-                0x00103486                _ZN10irq_driver16register_handlerEiPFvP9registersE
- .text          0x00103499       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
-                0x00103499                _Z8hal_initv
- .text          0x001034b6       0x48 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
-                0x001034b6                _Z3endv
-                0x001034bb                _Z13timer_handlerP9registers
-                0x001034c1                _Z16keyboard_handlerP9registers
- *fill*         0x001034fe        0x2 
- .text          0x00103500      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
-                0x00103500                __udivdi3
- *fill*         0x0010361a        0x6 
- .text          0x00103620      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
-                0x00103620                __umoddi3
+ .text          0x001000c0       0x25 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/gdt.obj
+                0x001000c0                i686_gdt_load
+ *fill*         0x001000e5        0xb 
+ .text          0x001000f0        0xd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/idt.obj
+                0x001000f0                i686_idt_load
+ *fill*         0x001000fd        0x3 
+ .text          0x00100100       0x25 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/io.obj
+                0x00100100                i686_outb
+                0x0010010b                i686_inb
+                0x00100117                i686_halt
+                0x00100119                i686_crash
+                0x00100121                i686_enaint
+                0x00100123                i686_disint
+ *fill*         0x00100125        0xb 
+ .text          0x00100130      0xa70 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/isr.obj
+                0x00100130                i686_isr0
+                0x00100139                i686_isr1
+                0x00100142                i686_isr2
+                0x0010014b                i686_isr3
+                0x00100154                i686_isr4
+                0x0010015d                i686_isr5
+                0x00100166                i686_isr6
+                0x0010016f                i686_isr7
+                0x00100178                i686_isr8
+                0x0010017f                i686_isr9
+                0x00100188                i686_isr10
+                0x0010018f                i686_isr11
+                0x00100196                i686_isr12
+                0x0010019d                i686_isr13
+                0x001001a4                i686_isr14
+                0x001001ab                i686_isr15
+                0x001001b4                i686_isr16
+                0x001001bd                i686_isr17
+                0x001001c4                i686_isr18
+                0x001001cd                i686_isr19
+                0x001001d6                i686_isr20
+                0x001001df                i686_isr21
+                0x001001e6                i686_isr22
+                0x001001ef                i686_isr23
+                0x001001f8                i686_isr24
+                0x00100201                i686_isr25
+                0x0010020a                i686_isr26
+                0x00100213                i686_isr27
+                0x0010021c                i686_isr28
+                0x00100225                i686_isr29
+                0x0010022e                i686_isr30
+                0x00100237                i686_isr31
+                0x00100240                i686_isr32
+                0x00100249                i686_isr33
+                0x00100252                i686_isr34
+                0x0010025b                i686_isr35
+                0x00100264                i686_isr36
+                0x0010026d                i686_isr37
+                0x00100276                i686_isr38
+                0x0010027f                i686_isr39
+                0x00100288                i686_isr40
+                0x00100291                i686_isr41
+                0x0010029a                i686_isr42
+                0x001002a3                i686_isr43
+                0x001002ac                i686_isr44
+                0x001002b5                i686_isr45
+                0x001002be                i686_isr46
+                0x001002c7                i686_isr47
+                0x001002d0                i686_isr48
+                0x001002d9                i686_isr49
+                0x001002e2                i686_isr50
+                0x001002eb                i686_isr51
+                0x001002f4                i686_isr52
+                0x001002fd                i686_isr53
+                0x00100306                i686_isr54
+                0x0010030f                i686_isr55
+                0x00100318                i686_isr56
+                0x00100321                i686_isr57
+                0x0010032a                i686_isr58
+                0x00100333                i686_isr59
+                0x0010033c                i686_isr60
+                0x00100345                i686_isr61
+                0x0010034e                i686_isr62
+                0x00100357                i686_isr63
+                0x00100360                i686_isr64
+                0x00100369                i686_isr65
+                0x00100372                i686_isr66
+                0x0010037b                i686_isr67
+                0x00100384                i686_isr68
+                0x0010038d                i686_isr69
+                0x00100396                i686_isr70
+                0x0010039f                i686_isr71
+                0x001003a8                i686_isr72
+                0x001003b1                i686_isr73
+                0x001003ba                i686_isr74
+                0x001003c3                i686_isr75
+                0x001003cc                i686_isr76
+                0x001003d5                i686_isr77
+                0x001003de                i686_isr78
+                0x001003e7                i686_isr79
+                0x001003f0                i686_isr80
+                0x001003f9                i686_isr81
+                0x00100402                i686_isr82
+                0x0010040b                i686_isr83
+                0x00100414                i686_isr84
+                0x0010041d                i686_isr85
+                0x00100426                i686_isr86
+                0x0010042f                i686_isr87
+                0x00100438                i686_isr88
+                0x00100441                i686_isr89
+                0x0010044a                i686_isr90
+                0x00100453                i686_isr91
+                0x0010045c                i686_isr92
+                0x00100465                i686_isr93
+                0x0010046e                i686_isr94
+                0x00100477                i686_isr95
+                0x00100480                i686_isr96
+                0x00100489                i686_isr97
+                0x00100492                i686_isr98
+                0x0010049b                i686_isr99
+                0x001004a4                i686_isr100
+                0x001004ad                i686_isr101
+                0x001004b6                i686_isr102
+                0x001004bf                i686_isr103
+                0x001004c8                i686_isr104
+                0x001004d1                i686_isr105
+                0x001004da                i686_isr106
+                0x001004e3                i686_isr107
+                0x001004ec                i686_isr108
+                0x001004f5                i686_isr109
+                0x001004fe                i686_isr110
+                0x00100507                i686_isr111
+                0x00100510                i686_isr112
+                0x00100519                i686_isr113
+                0x00100522                i686_isr114
+                0x0010052b                i686_isr115
+                0x00100534                i686_isr116
+                0x0010053d                i686_isr117
+                0x00100546                i686_isr118
+                0x0010054f                i686_isr119
+                0x00100558                i686_isr120
+                0x00100561                i686_isr121
+                0x0010056a                i686_isr122
+                0x00100573                i686_isr123
+                0x0010057c                i686_isr124
+                0x00100585                i686_isr125
+                0x0010058e                i686_isr126
+                0x00100597                i686_isr127
+                0x001005a0                i686_isr128
+                0x001005ac                i686_isr129
+                0x001005b8                i686_isr130
+                0x001005c4                i686_isr131
+                0x001005d0                i686_isr132
+                0x001005dc                i686_isr133
+                0x001005e8                i686_isr134
+                0x001005f4                i686_isr135
+                0x00100600                i686_isr136
+                0x0010060c                i686_isr137
+                0x00100618                i686_isr138
+                0x00100624                i686_isr139
+                0x00100630                i686_isr140
+                0x0010063c                i686_isr141
+                0x00100648                i686_isr142
+                0x00100654                i686_isr143
+                0x00100660                i686_isr144
+                0x0010066c                i686_isr145
+                0x00100678                i686_isr146
+                0x00100684                i686_isr147
+                0x00100690                i686_isr148
+                0x0010069c                i686_isr149
+                0x001006a8                i686_isr150
+                0x001006b4                i686_isr151
+                0x001006c0                i686_isr152
+                0x001006cc                i686_isr153
+                0x001006d8                i686_isr154
+                0x001006e4                i686_isr155
+                0x001006f0                i686_isr156
+                0x001006fc                i686_isr157
+                0x00100708                i686_isr158
+                0x00100714                i686_isr159
+                0x00100720                i686_isr160
+                0x0010072c                i686_isr161
+                0x00100738                i686_isr162
+                0x00100744                i686_isr163
+                0x00100750                i686_isr164
+                0x0010075c                i686_isr165
+                0x00100768                i686_isr166
+                0x00100774                i686_isr167
+                0x00100780                i686_isr168
+                0x0010078c                i686_isr169
+                0x00100798                i686_isr170
+                0x001007a4                i686_isr171
+                0x001007b0                i686_isr172
+                0x001007bc                i686_isr173
+                0x001007c8                i686_isr174
+                0x001007d4                i686_isr175
+                0x001007e0                i686_isr176
+                0x001007ec                i686_isr177
+                0x001007f8                i686_isr178
+                0x00100804                i686_isr179
+                0x00100810                i686_isr180
+                0x0010081c                i686_isr181
+                0x00100828                i686_isr182
+                0x00100834                i686_isr183
+                0x00100840                i686_isr184
+                0x0010084c                i686_isr185
+                0x00100858                i686_isr186
+                0x00100864                i686_isr187
+                0x00100870                i686_isr188
+                0x0010087c                i686_isr189
+                0x00100888                i686_isr190
+                0x00100894                i686_isr191
+                0x001008a0                i686_isr192
+                0x001008ac                i686_isr193
+                0x001008b8                i686_isr194
+                0x001008c4                i686_isr195
+                0x001008d0                i686_isr196
+                0x001008dc                i686_isr197
+                0x001008e8                i686_isr198
+                0x001008f4                i686_isr199
+                0x00100900                i686_isr200
+                0x0010090c                i686_isr201
+                0x00100918                i686_isr202
+                0x00100924                i686_isr203
+                0x00100930                i686_isr204
+                0x0010093c                i686_isr205
+                0x00100948                i686_isr206
+                0x00100954                i686_isr207
+                0x00100960                i686_isr208
+                0x0010096c                i686_isr209
+                0x00100978                i686_isr210
+                0x00100984                i686_isr211
+                0x00100990                i686_isr212
+                0x0010099c                i686_isr213
+                0x001009a8                i686_isr214
+                0x001009b4                i686_isr215
+                0x001009c0                i686_isr216
+                0x001009cc                i686_isr217
+                0x001009d8                i686_isr218
+                0x001009e4                i686_isr219
+                0x001009f0                i686_isr220
+                0x001009fc                i686_isr221
+                0x00100a08                i686_isr222
+                0x00100a14                i686_isr223
+                0x00100a20                i686_isr224
+                0x00100a2c                i686_isr225
+                0x00100a38                i686_isr226
+                0x00100a44                i686_isr227
+                0x00100a50                i686_isr228
+                0x00100a5c                i686_isr229
+                0x00100a68                i686_isr230
+                0x00100a74                i686_isr231
+                0x00100a80                i686_isr232
+                0x00100a8c                i686_isr233
+                0x00100a98                i686_isr234
+                0x00100aa4                i686_isr235
+                0x00100ab0                i686_isr236
+                0x00100abc                i686_isr237
+                0x00100ac8                i686_isr238
+                0x00100ad4                i686_isr239
+                0x00100ae0                i686_isr240
+                0x00100aec                i686_isr241
+                0x00100af5                i686_isr242
+                0x00100afe                i686_isr243
+                0x00100b07                i686_isr244
+                0x00100b10                i686_isr245
+                0x00100b19                i686_isr246
+                0x00100b22                i686_isr247
+                0x00100b2b                i686_isr248
+                0x00100b34                i686_isr249
+                0x00100b3d                i686_isr250
+                0x00100b46                i686_isr251
+                0x00100b4f                i686_isr252
+                0x00100b58                i686_isr253
+                0x00100b61                i686_isr254
+                0x00100b6a                i686_isr255
+ .text          0x00100ba0       0x1b /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
+                0x00100ba0                i686_iowait
+ .text          0x00100bbb       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+                0x00100bbb                i686_gdt_init
+ .text          0x00100bd8     0x1489 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+                0x00100bd8                i686_isr_init_gates
+ .text          0x00102061       0xba /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00102061                i686_idt_setgate
+                0x001020c2                i686_idt_enablegate
+                0x001020e2                i686_idt_disablegate
+                0x00102102                i686_idt_init
+ .text          0x0010211b      0x1f6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+                0x0010211b                i686_isr_init
+                0x0010215d                i686_isr_handler
+                0x001022ed                i686_isr_register_handler
+ .text          0x00102311      0x7f6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00102311                putclr
+                0x00102343                putchr
+                0x00102372                putc
+                0x00102482                puts
+                0x001024b1                cls
+                0x0010251f                setcrs
+                0x00102590                getchr
+                0x001025b2                getclr
+                0x001025d7                scrlback
+                0x001026be                printf
+                0x00102a03                printf_unsigned
+                0x00102aaa                printf_signed
+ .text          0x00102b07       0xf5 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+                0x00102b07                memcpy
+                0x00102b59                memset
+                0x00102b9c                memcmp
+ .text          0x00102bfc       0x21 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+                0x00102bfc                terminate
+ *fill*         0x00102c1d        0x1 
+ .text          0x00102c1e      0x6f8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+                0x00102c1e                _ZN10ps2_driverC1Eb
+                0x00102c1e                _ZN10ps2_driverC2Eb
+                0x00102d52                _ZN10ps2_driver15test_controllerEv
+                0x00102d98                _ZN10ps2_driver9test_portEv
+                0x00102df4                _ZN10ps2_driver7disableEv
+                0x00102e36                _ZN10ps2_driver6enableEv
+                0x00102e78                _ZN10ps2_driver12flush_outbufEv
+                0x00102eb2                _ZN10ps2_driver11flush_inbufEv
+                0x00102eec                _ZN10ps2_driver11disable_irqEv
+                0x00102f6a                _ZN10ps2_driver10enable_irqEv
+                0x00102fe8                _ZN10ps2_driver19disable_translationEv
+                0x00103052                _ZN10ps2_driver21check_port2_availableEv
+                0x00103090                _ZN10ps2_driver5resetEv
+                0x00103128                _ZN10ps2_driver8identifyEv
+ .text          0x00103316       0x23 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
+                0x00103316                _ZN12ps2_keyboardC1Ei
+                0x00103316                _ZN12ps2_keyboardC2Ei
+ *fill*         0x00103339        0x1 
+ .text          0x0010333a      0x2ae /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+                0x0010333a                _ZN10pic_driver4initEhhb
+                0x0010345a                _ZN10pic_driver5probeEv
+                0x00103484                _ZN10pic_driver7disableEv
+                0x0010349e                _ZN10pic_driver8send_eoiEi
+                0x001034ce                _ZN10pic_driver4maskEi
+                0x00103500                _ZN10pic_driver6unmaskEi
+                0x00103534                _ZN10pic_driver7getmaskEv
+                0x00103540                _ZN10pic_driver7setmaskEt
+                0x0010359c                _ZN10pic_driver8readmaskEv
+ .text          0x001035e8       0xe7 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+                0x001035e8                _Z16i686_irq_handlerP9registers
+                0x0010364e                _ZN10irq_driver4initEv
+                0x001036bc                _ZN10irq_driver16register_handlerEiPFvP9registersE
+ .text          0x001036cf       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+                0x001036cf                _Z8hal_initv
+ .text          0x001036ec       0x48 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+                0x001036ec                _Z3endv
+                0x001036f1                _Z13timer_handlerP9registers
+                0x001036f7                _Z16keyboard_handlerP9registers
+ *fill*         0x00103734        0xc 
+ .text          0x00103740      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                0x00103740                __udivdi3
+ *fill*         0x0010385a        0x6 
+ .text          0x00103860      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x00103860                __umoddi3
 
-.data           0x00103760      0x1c0
-                0x00103760                        __data_start = .
+.text._Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
+                0x0010399e        0xa
+ .text._Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
+                0x0010399e        0xa /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+                0x0010399e                _Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
+
+.data           0x001039c0      0x220
+                0x001039c0                        __data_start = .
  *(.data)
- .data          0x00103760        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
- .data          0x00103760       0x1e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
-                0x00103760                g_gdt
-                0x00103778                g_gdtdescriptor
- .data          0x0010377e        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
- *fill*         0x0010377e        0x2 
- .data          0x00103780        0x6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00103780                g_idtdescriptor
- *fill*         0x00103786       0x1a 
- .data          0x001037a0       0x80 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
- .data          0x00103820        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00103820                g_screenbuf
-                0x00103824                hex_chars
- .data          0x00103828        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .data          0x00103828        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- *fill*         0x00103828       0x18 
- .data          0x00103840       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
- .data          0x001038a0        0x2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
-                0x001038a0                _ZN10pic_driver6a_maskE
- .data          0x001038a2        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- .data          0x001038a2        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- *fill*         0x001038a2       0x1e 
- .data          0x001038c0       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .data          0x00103920        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .data          0x00103920        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .data          0x001039c0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
+ .data          0x001039c0       0x1e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+                0x001039c0                g_gdt
+                0x001039d8                g_gdtdescriptor
+ .data          0x001039de        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ *fill*         0x001039de        0x2 
+ .data          0x001039e0        0x6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x001039e0                g_idtdescriptor
+ *fill*         0x001039e6       0x1a 
+ .data          0x00103a00       0x80 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .data          0x00103a80        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00103a80                g_screenbuf
+                0x00103a84                hex_chars
+ .data          0x00103a88        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .data          0x00103a88        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+ *fill*         0x00103a88       0x18 
+ .data          0x00103aa0       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .data          0x00103b00       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
+ .data          0x00103b60        0x2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+                0x00103b60                _ZN10pic_driver6a_maskE
+ .data          0x00103b62        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ .data          0x00103b62        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ *fill*         0x00103b62       0x1e 
+ .data          0x00103b80       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .data          0x00103be0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .data          0x00103be0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.rodata         0x00103920      0x730
-                0x00103920                        __rodata_start = .
+.rodata         0x00103be0      0x935
+                0x00103be0                        __rodata_start = .
  *(.rodata)
- .rodata        0x00103920      0x333 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
- *fill*         0x00103c53        0x1 
- .rodata        0x00103c54       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00103c54                SCR_W
-                0x00103c58                SCR_H
- .rodata        0x00103d05        0xe /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- *fill*         0x00103d13        0x1 
- .rodata        0x00103d14      0x1f7 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
- .rodata        0x00103f0b       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- *fill*         0x00103f1e        0x2 
- .rodata        0x00103f20      0x130 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .rodata        0x00103be0      0x333 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ *fill*         0x00103f13        0x1 
+ .rodata        0x00103f14       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00103f14                SCR_W
+                0x00103f18                SCR_H
+ .rodata        0x00103fc5        0xe /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+ *fill*         0x00103fd3        0x1 
+ .rodata        0x00103fd4      0x2d1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ *fill*         0x001042a5        0x3 
+ .rodata        0x001042a8      0x119 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
+ .rodata        0x001043c1       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ .rodata        0x001043d4      0x141 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
 
-.eh_frame       0x00104050      0x4f0
- .eh_frame      0x00104050      0x198 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
- .eh_frame      0x001041e8      0x13c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
- .eh_frame      0x00104324       0x78 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- .eh_frame      0x0010439c       0x38 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- .eh_frame      0x001043d4       0x94 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .eh_frame      0x00104468       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .eh_frame      0x001044cc       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+.eh_frame       0x00104518      0x568
+ .eh_frame      0x00104518      0x1d8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .eh_frame      0x001046f0       0x38 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
+ .eh_frame      0x00104728      0x13c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+ .eh_frame      0x00104864       0x78 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ .eh_frame      0x001048dc       0x38 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ .eh_frame      0x00104914       0x94 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .eh_frame      0x001049a8       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .eh_frame      0x00104a0c       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.bss            0x00104540      0xc70
-                0x00104540                        __bss_start = .
+.bss            0x00104a80      0xc7c
+                0x00104a80                        __bss_start = .
  *(.bss)
- .bss           0x00104540        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
- .bss           0x00104540        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- .bss           0x00104540        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
- .bss           0x00104540      0x800 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00104540                g_idt
- .bss           0x00104d40      0x400 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
-                0x00104d40                g_isr_handlers
- .bss           0x00105140        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00105140                g_screenx
-                0x00105144                g_screeny
- .bss           0x00105148        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .bss           0x00105148        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- .bss           0x00105148        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
- .bss           0x00105148       0x10 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
-                0x00105148                _ZN10pic_driver10a_auto_eoiE
- *fill*         0x00105158        0x8 
- .bss           0x00105160       0x50 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
-                0x00105160                _ZN10irq_driver13a_irqhandlersE
- .bss           0x001051b0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- .bss           0x001051b0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .bss           0x001051b0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .bss           0x001051b0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
-                0x001051b0                        __end = .
+ .bss           0x00104a80        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
+ .bss           0x00104a80        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+ .bss           0x00104a80        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .bss           0x00104a80      0x800 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00104a80                g_idt
+ .bss           0x00105280      0x400 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+                0x00105280                g_isr_handlers
+ .bss           0x00105680        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00105680                g_screenx
+                0x00105684                g_screeny
+ .bss           0x00105688        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .bss           0x00105688        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+ .bss           0x00105688        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .bss           0x00105688        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
+ .bss           0x00105688       0x10 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+                0x00105688                _ZN10pic_driver10a_auto_eoiE
+ *fill*         0x00105698        0x8 
+ .bss           0x001056a0       0x50 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+                0x001056a0                _ZN10irq_driver13a_irqhandlersE
+ .bss           0x001056f0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ .bss           0x001056f0        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .bss           0x001056fc        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .bss           0x001056fc        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x001056fc                        __end = .
 OUTPUT(/home/zaccaria/Scrivania/Proj/ZerOS/build/kernel.bin binary)
 
 .debug_info     0x00000000     0x2337
@@ -565,7 +583,7 @@ OUTPUT(/home/zaccaria/Scrivania/Proj/ZerOS/build/kernel.bin binary)
  .debug_line_str
                 0x00000949       0xfc /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.comment        0x00000000      0x11d
+.comment        0x00000000      0x130
  .comment       0x00000000       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
  .comment       0x00000013       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
  .comment       0x00000026       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
@@ -574,13 +592,14 @@ OUTPUT(/home/zaccaria/Scrivania/Proj/ZerOS/build/kernel.bin binary)
  .comment       0x0000005f       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
  .comment       0x00000072       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
  .comment       0x00000085       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- .comment       0x00000098       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2.obj
- .comment       0x000000ab       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
- .comment       0x000000be       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- .comment       0x000000d1       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- .comment       0x000000e4       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .comment       0x000000f7       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .comment       0x0000010a       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .comment       0x00000098       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .comment       0x000000ab       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_keyboard.obj
+ .comment       0x000000be       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+ .comment       0x000000d1       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ .comment       0x000000e4       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ .comment       0x000000f7       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .comment       0x0000010a       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .comment       0x0000011d       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
 .debug_frame    0x00000000      0x3e4
  .debug_frame   0x00000000       0x34 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
