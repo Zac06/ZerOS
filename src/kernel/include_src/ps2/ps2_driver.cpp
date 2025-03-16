@@ -39,6 +39,8 @@ ps2_driver::ps2_driver(bool p_port_no)
         terminate("PS/2 controller reset failed. Terminating.");
     }
 
+    printf("Device type: %s\n", identify()->name);
+
     enable_irq();
     enable();
 }
@@ -211,7 +213,7 @@ const ps2_dev_type* ps2_driver::identify(){
             printf("Disabling scanning...\n");
         }
     }
-    if(i==3){
+    if(i==attempts){
         terminate("Error while trying to disable scanning on the device. Terminating.");
     }
 
@@ -231,7 +233,7 @@ const ps2_dev_type* ps2_driver::identify(){
             printf("Identifying ps2_devtype...\n");
         }
     }
-    if(i==3){
+    if(i==attempts){
         terminate("Error while trying to identify the device. Terminating.");
     }
 
@@ -261,8 +263,9 @@ const ps2_dev_type* ps2_driver::identify(){
     //printf("sent enable scan\n");
 
     if(i==arrsize(devtypes)){
-        return NULL;
+        terminate("Could not identify device. Terminating.");
     }
 
+    type=devtypes[i].id;
     return &devtypes[i];
 }

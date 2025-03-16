@@ -126,9 +126,10 @@ static ps2_dev_type devtypes[] ={
 };
 
 class ps2_driver {
-    private:
+    protected:
         bool port_no;
-
+        uint16_t type;
+        
     public:
         ps2_driver(bool p_port_no);
 

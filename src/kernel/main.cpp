@@ -6,6 +6,7 @@
 #include<i686/irq.hpp>
 #include<ps2/ps2_keyboard.hpp>
 #include<i686/pic.hpp>
+#include<stddef.h>
 
 extern uint8_t __bss_start;
 extern uint8_t __end;
@@ -21,7 +22,7 @@ void timer_handler(registers* regs){
 void keyboard_handler(registers* regs){
     uint8_t scancode=i686_inb(0x60);
     printf("0x%x\n", scancode);
-    i686_outb(0x20, 0x20);     //send EOI to PIC
+    //i686_outb(0x20, 0x20);     //send EOI to PIC
 }
 
 
@@ -38,14 +39,7 @@ extern "C" void __attribute__((section(".entry"))) start(uint16_t boot_drive){
     printf("Hi from kernel!\n");
 
     pic_driver::disable();
-    ps2_driver ps2(PS2_1ST_CONTROLLER);
-
-    printf("Device type: %s\n", ps2.identify()->name);
-    
-    irq_driver::register_handler(0, timer_handler);
-    irq_driver::register_handler(1, keyboard_handler);
-
-    pic_driver::unmask(1);
+    ps2_keyboard ps2(PS2_1ST_CONTROLLER);
 
     end();
 }
