@@ -12,6 +12,7 @@ int g_screenx=0;
 int g_screeny=0;
 const unsigned SCR_W=80;            //in characters
 const unsigned SCR_H=25;
+unsigned g_tabw=4;
 
 void putclr(int x, int y, uint8_t color){
     g_screenbuf[2*(y*SCR_W+x)+1]=color;     //buffer contains 2 bytes per letter, and the second byte is the attribute one.
@@ -19,6 +20,14 @@ void putclr(int x, int y, uint8_t color){
 
 void putchr(int x, int y, char c){
     g_screenbuf[2*(y*SCR_W+x)]=c;
+}
+
+void set_tabw(unsigned tabw){
+    g_tabw=tabw;
+}
+
+unsigned get_tabw(){
+    return g_tabw;
 }
 
 void putc(char c){
@@ -35,8 +44,20 @@ void putc(char c){
             break;
 
         case '\t':
-            for(int i=0; i<4-(g_screenx%4); i++){
+            int tmp=g_screenx;
+            for(int i=0; i<g_tabw-(tmp%g_tabw); i++){
                 putc(' ');
+            }
+            break;
+        
+        case '\b':
+            if(g_screenx!=0){
+                g_screenx--;
+                putchr(g_screenx, g_screeny, ' ');
+            }else if(g_screeny!=0){
+                g_screenx=SCR_W;
+                g_screeny--;
+                putc('\b');
             }
             break;
 

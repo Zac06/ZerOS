@@ -53,6 +53,7 @@ typedef enum {
 class ps2_keyboard : public ps2_driver {
     private:
         uint16_t devtype;
+        static bool firstread;
 
         /**
          * TODO: static queue;

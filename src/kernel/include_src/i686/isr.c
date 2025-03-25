@@ -59,16 +59,18 @@ void __attribute__((cdecl)) i686_isr_handler(registers* regs){
     }else if(regs->interrno>=32){
         printf("Unhandled interrupt: %d\n", regs->interrno);
     }else{
+        set_tabw(12);
+
         printf("Unhandled exception: [%d] %s\n", regs->interrno, g_exceptions[regs->interrno]);
         printf("Interrno: %x, errno: %x\n", regs->interrno, regs->errno);
         printf("CPU registers:\n");
-        printf(" |--EAX: 0x%x\t\t ESP:    0x%x\n", regs->eax, regs->esp);
-        printf(" |--EBX: 0x%x\t\t EBP:    0x%x\n", regs->ebx, regs->ebp);
-        printf(" |--ECX: 0x%x\t\t EIP:    0x%x\n", regs->ecx, regs->eip);
-        printf(" |--EDX: 0x%x\t\t EFLAGS: 0x%x\n", regs->edx, regs->eflags);
-        printf(" |--ESI: 0x%x\t\t CS:     0x%x\n", regs->esi, regs->cs);
-        printf(" |--EDI: 0x%x\t\t DS:     0x%x\n", regs->edi, regs->ds);
-        printf("           \t\t |--SS:     0x%x\n", regs->ss);
+        printf(" |--EAX: 0x%x\t |--ESP:    0x%x\n", regs->eax, regs->esp);
+        printf(" |--EBX: 0x%x\t |--EBP:    0x%x\n", regs->ebx, regs->ebp);
+        printf(" |--ECX: 0x%x\t |--EIP:    0x%x\n", regs->ecx, regs->eip);
+        printf(" |--EDX: 0x%x\t |--EFLAGS: 0x%x\n", regs->edx, regs->eflags);
+        printf(" |--ESI: 0x%x\t |--CS:     0x%x\n", regs->esi, regs->cs);
+        printf(" |--EDI: 0x%x\t |--DS:     0x%x\n", regs->edi, regs->ds);
+        printf("             \t |--SS:     0x%x\n", regs->ss);
 
         printf("========= KERNEL PANIC ========= \n");
         i686_halt();

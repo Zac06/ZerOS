@@ -4,18 +4,17 @@
 #include<util/error.h>
 #include<util/array.hpp>
 #include<stddef.h>
+#include<i686/pic.hpp>
 
 ps2_driver::ps2_driver(bool p_port_no)
     :port_no(p_port_no)
-{
+{   
+    pic_driver::mask(1);
     disable();
     
-
     if(port_no==PS2_2ND_CONTROLLER&&!check_port2_available()){
         terminate("PS/2 port 2 not available. Terminating.");
     }
-
-    
 
     if(!test_controller()){
         terminate("PS/2 controller self test failed. Terminating.");
@@ -43,6 +42,7 @@ ps2_driver::ps2_driver(bool p_port_no)
 
     enable_irq();
     enable();
+    pic_driver::unmask(1);
 }
 
 /*void ps2_driver::init(bool p_port_no){
@@ -263,6 +263,8 @@ const ps2_dev_type* ps2_driver::identify(){
     //printf("sent enable scan\n");
 
     if(i==arrsize(devtypes)){
+        type=0xab|(0x83<<8);
+        //return &devtypes[3];
         terminate("Could not identify device. Terminating.");
     }
 

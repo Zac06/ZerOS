@@ -1,19 +1,24 @@
-#include<ps2/ps2_keyboard.hpp>
+#include<ps2/keyboard/ps2_keyboard.hpp>
+#include<ps2/keyboard/scancode.h>
 #include<i686/io.h>
 #include<stddef.h>
 #include<i686/pic.hpp>
 #include<i686/irq.hpp>
 #include<std/stdio.h>
 #include<util/error.h>
+#include<util/array.hpp>
+
+bool ps2_keyboard::firstread=false;
 
 ps2_keyboard::ps2_keyboard(int p_port_no)
     :ps2_driver(p_port_no)
 {
+    pic_driver::mask(1);
     //assumes that translation is disabled.
     flush_inbuf();
     flush_outbuf();
 
-    const int scancodeset=PS2KEY_SCANCODE_SET2;
+    const int scancodeset=PS2KEY_SCANCODE_SET1;
     set_scancodeset(scancodeset);
     if(scancodeset!=get_scancodeset()){
         terminate("Could not set the scancode properly.");
@@ -45,6 +50,7 @@ int8_t ps2_keyboard::get_scancodeset(){
 
         uint8_t scancodeset=i686_inb(PS2_DATA_PORT);
         i686_iowait();
+
         return scancodeset;
         
     }else{
@@ -84,6 +90,45 @@ void ps2_keyboard::set_scancodeset(uint8_t p_set){
  * Luckily, scancode set 2 is guaranteed to be supported.
  */
 void ps2_keyboard::handler(registers* regs){
-    uint8_t scancode=i686_inb(0x60);
-    printf("Internal handler: 0x%x\n", scancode);
+    if(!firstread){
+        firstread=true;
+        i686_inb(PS2_DATA_PORT);
+        i686_iowait();
+        return;
+    }
+
+    const int size=arrsize(scancode1_lookup);
+    int otherinps;
+
+    for(int i=0; i<size; i++){
+        uint8_t scancode=i686_inb(PS2_DATA_PORT);
+        //printf("Internal handler: 0x%x\n", scancode);
+
+        switch(scancode1_lookup[i][scancode].operation&KC_OP_MASK){
+            case KC_OP_RELEASED:
+                //printf("%s", scancode1_kc_strings[scancode1_lookup[i][scancode].keycode]);
+                return;
+                break;
+
+            case KC_OP_PRESSED:
+                printf("%s", scancode1_kc_strings[scancode1_lookup[i][scancode].keycode]);
+                return;
+                break;
+
+            case KC_OP_NEXTLOOKUP:
+                break;
+
+            case KC_OP_INVALIDSC:
+                printf("INVALIDSC\n");
+                return;
+                break;
+        }
+
+        otherinps=(scancode1_lookup[i][scancode].operation>>4);
+        //printf("Other inputs: %d", otherinps);
+        for(int j=0; j<otherinps; j++){
+            i686_inb(PS2_DATA_PORT);
+            //printf("Extra input %d", j);
+        }
+    }
 }

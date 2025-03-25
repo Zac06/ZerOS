@@ -48,6 +48,9 @@ enum CLR_ATTRIBUTES {
 void putc(char c);
 void puts(const char* str);
 
+void set_tabw(unsigned tabw);
+unsigned get_tabw();
+
 void printf(const char* fmt, ...);
 
 void cls();

@@ -4,7 +4,7 @@
 #include <std/string.h>
 #include<hal/hal.hpp>
 #include<i686/irq.hpp>
-#include<ps2/ps2_keyboard.hpp>
+#include<ps2/keyboard/ps2_keyboard.hpp>
 #include<i686/pic.hpp>
 #include<stddef.h>
 
@@ -37,9 +37,10 @@ extern "C" void __attribute__((section(".entry"))) start(uint16_t boot_drive){
 
     cls();
     printf("Hi from kernel!\n");
-
+ 
     pic_driver::disable();
     ps2_keyboard ps2(PS2_1ST_CONTROLLER);
+
 
     end();
 }
