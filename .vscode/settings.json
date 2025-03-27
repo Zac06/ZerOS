@@ -36,7 +36,13 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "*.ipp": "cpp",
+        "hash_map": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
     },
     "files.exclude": {
         "toolchain/**": true

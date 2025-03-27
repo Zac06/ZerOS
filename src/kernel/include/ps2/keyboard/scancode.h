@@ -23,7 +23,7 @@ const char* scancode1_kc_strings[] = {
     "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/",
     "RSHIFT", "KP_*", "LALT", " ", "CAPSLOCK",
     "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10",
-    "NUMLOCK", "SCROLLLOCK",
+    "NUMLOCK", "SCROLLLOCK", // this two particular lines  
     "KP_7", "KP_8", "KP_9", "KP_-",
     "KP_4", "KP_5", "KP_6", "KP_+",
     "KP_1", "KP_2", "KP_3", "KP_0", "KP_.",
@@ -518,7 +518,7 @@ const scantokey_map scancode1_lookup2[]={
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
-    {KC_OP_INVALIDSC, KC_INVALID},
+    //{KC_OP_INVALIDSC, KC_INVALID},
 
     {KC_OP_PRESSED, KC_HOME},
     {KC_OP_PRESSED, KC_CUR_UP},
@@ -540,6 +540,10 @@ const scantokey_map scancode1_lookup2[]={
     {KC_OP_PRESSED, KC_INSERT},
     {KC_OP_PRESSED, KC_DEL},
 
+    {KC_OP_INVALIDSC, KC_INVALID},
+    {KC_OP_INVALIDSC, KC_INVALID},
+    {KC_OP_INVALIDSC, KC_INVALID},
+    {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
@@ -679,7 +683,6 @@ const scantokey_map scancode1_lookup2[]={
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
-    {KC_OP_INVALIDSC, KC_INVALID},
 
     {KC_OP_RELEASED, KC_HOME},
     {KC_OP_RELEASED, KC_CUR_UP},
@@ -701,6 +704,10 @@ const scantokey_map scancode1_lookup2[]={
     {KC_OP_RELEASED, KC_INSERT},
     {KC_OP_RELEASED, KC_DEL},
 
+    {KC_OP_INVALIDSC, KC_INVALID},
+    {KC_OP_INVALIDSC, KC_INVALID},
+    {KC_OP_INVALIDSC, KC_INVALID},
+    {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},

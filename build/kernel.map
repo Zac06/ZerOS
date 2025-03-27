@@ -45,7 +45,7 @@ LOAD /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.
  .entry         0x00100000       0x65 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
                 0x00100000                start
 
-.text           0x00100070     0x3d0e
+.text           0x00100070     0x3ece
                 0x00100070                        __text_start = .
  *(.text)
  .text          0x00100070        0xd /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/asm/./include_src/i686/idt.obj
@@ -354,155 +354,164 @@ LOAD /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.
                 0x00102c1d                i686_idt_enablegate
                 0x00102c3d                i686_idt_disablegate
                 0x00102c5d                i686_idt_init
- .text          0x00102c76      0x36c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
-                0x00102c76                _ZN12ps2_keyboardC1Ei
-                0x00102c76                _ZN12ps2_keyboardC2Ei
-                0x00102d22                _ZN12ps2_keyboard15get_scancodesetEv
-                0x00102df2                _ZN12ps2_keyboard15set_scancodesetEh
-                0x00102eaa                _ZN12ps2_keyboard7handlerEP9registers
- .text          0x00102fe2      0x752 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
-                0x00102fe2                _ZN10ps2_driverC1Eb
-                0x00102fe2                _ZN10ps2_driverC2Eb
-                0x00103152                _ZN10ps2_driver15test_controllerEv
-                0x00103198                _ZN10ps2_driver9test_portEv
-                0x001031f4                _ZN10ps2_driver7disableEv
-                0x00103236                _ZN10ps2_driver6enableEv
-                0x00103278                _ZN10ps2_driver12flush_outbufEv
-                0x001032b2                _ZN10ps2_driver11flush_inbufEv
-                0x001032ec                _ZN10ps2_driver11disable_irqEv
-                0x0010336a                _ZN10ps2_driver10enable_irqEv
-                0x001033e8                _ZN10ps2_driver19disable_translationEv
-                0x00103452                _ZN10ps2_driver21check_port2_availableEv
-                0x00103490                _ZN10ps2_driver5resetEv
-                0x00103528                _ZN10ps2_driver8identifyEv
- .text          0x00103734       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
-                0x00103734                _Z8hal_initv
- *fill*         0x00103751        0x1 
- .text          0x00103752      0x2ae /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
-                0x00103752                _ZN10pic_driver4initEhhb
-                0x00103872                _ZN10pic_driver5probeEv
-                0x0010389c                _ZN10pic_driver7disableEv
-                0x001038b6                _ZN10pic_driver8send_eoiEi
-                0x001038e6                _ZN10pic_driver4maskEi
-                0x00103918                _ZN10pic_driver6unmaskEi
-                0x0010394c                _ZN10pic_driver7getmaskEv
-                0x00103958                _ZN10pic_driver7setmaskEt
-                0x001039b4                _ZN10pic_driver8readmaskEv
- .text          0x00103a00       0xe7 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
-                0x00103a00                _Z16i686_irq_handlerP9registers
-                0x00103a66                _ZN10irq_driver4initEv
-                0x00103ad4                _ZN10irq_driver16register_handlerEiPFvP9registersE
- .text          0x00103ae7       0x39 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
-                0x00103ae7                _Z3endv
-                0x00103aec                _Z13timer_handlerP9registers
-                0x00103af2                _Z16keyboard_handlerP9registers
- .text          0x00103b20      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
-                0x00103b20                __udivdi3
- *fill*         0x00103c3a        0x6 
- .text          0x00103c40      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
-                0x00103c40                __umoddi3
+ .text          0x00102c76      0x52a /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
+                0x00102c76                _ZN12ps2_keyboard11inner_queue8pushcodeEh
+                0x00102cc4                _ZN12ps2_keyboard11inner_queue7popcodeEv
+                0x00102d50                _ZN12ps2_keyboard11inner_queue10clearcodesEv
+                0x00102d74                _ZN12ps2_keyboardC1Ei
+                0x00102d74                _ZN12ps2_keyboardC2Ei
+                0x00102e20                _ZN12ps2_keyboard15get_scancodesetEv
+                0x00102ef0                _ZN12ps2_keyboard15set_scancodesetEh
+                0x00102fa8                _ZN12ps2_keyboard11int_handlerEP9registers
+ .text          0x001031a0      0x752 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+                0x001031a0                _ZN10ps2_driverC1Eb
+                0x001031a0                _ZN10ps2_driverC2Eb
+                0x00103310                _ZN10ps2_driver15test_controllerEv
+                0x00103356                _ZN10ps2_driver9test_portEv
+                0x001033b2                _ZN10ps2_driver7disableEv
+                0x001033f4                _ZN10ps2_driver6enableEv
+                0x00103436                _ZN10ps2_driver12flush_outbufEv
+                0x00103470                _ZN10ps2_driver11flush_inbufEv
+                0x001034aa                _ZN10ps2_driver11disable_irqEv
+                0x00103528                _ZN10ps2_driver10enable_irqEv
+                0x001035a6                _ZN10ps2_driver19disable_translationEv
+                0x00103610                _ZN10ps2_driver21check_port2_availableEv
+                0x0010364e                _ZN10ps2_driver5resetEv
+                0x001036e6                _ZN10ps2_driver8identifyEv
+ .text          0x001038f2       0x1d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+                0x001038f2                _Z8hal_initv
+ *fill*         0x0010390f        0x1 
+ .text          0x00103910      0x2ae /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+                0x00103910                _ZN10pic_driver4initEhhb
+                0x00103a30                _ZN10pic_driver5probeEv
+                0x00103a5a                _ZN10pic_driver7disableEv
+                0x00103a74                _ZN10pic_driver8send_eoiEi
+                0x00103aa4                _ZN10pic_driver4maskEi
+                0x00103ad6                _ZN10pic_driver6unmaskEi
+                0x00103b0a                _ZN10pic_driver7getmaskEv
+                0x00103b16                _ZN10pic_driver7setmaskEt
+                0x00103b72                _ZN10pic_driver8readmaskEv
+ .text          0x00103bbe       0xe7 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+                0x00103bbe                _Z16i686_irq_handlerP9registers
+                0x00103c24                _ZN10irq_driver4initEv
+                0x00103c92                _ZN10irq_driver16register_handlerEiPFvP9registersE
+ .text          0x00103ca5       0x39 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+                0x00103ca5                _Z3endv
+                0x00103caa                _Z13timer_handlerP9registers
+                0x00103cb0                _Z16keyboard_handlerP9registers
+ *fill*         0x00103cde        0x2 
+ .text          0x00103ce0      0x11a /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+                0x00103ce0                __udivdi3
+ *fill*         0x00103dfa        0x6 
+ .text          0x00103e00      0x13e /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x00103e00                __umoddi3
 
 .text._Z7arrsizeIPK13scantokey_mapLm2EEmRAT0__KT_
-                0x00103d7e        0xa
+                0x00103f3e        0xa
  .text._Z7arrsizeIPK13scantokey_mapLm2EEmRAT0__KT_
-                0x00103d7e        0xa /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
-                0x00103d7e                _Z7arrsizeIPK13scantokey_mapLm2EEmRAT0__KT_
+                0x00103f3e        0xa /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
+                0x00103f3e                _Z7arrsizeIPK13scantokey_mapLm2EEmRAT0__KT_
 
 .text._Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
-                0x00103d88        0xa
+                0x00103f48        0xa
  .text._Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
-                0x00103d88        0xa /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
-                0x00103d88                _Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
+                0x00103f48        0xa /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+                0x00103f48                _Z7arrsizeI12ps2_dev_typeLm12EEmRAT0__KT_
 
-.data           0x00103da0      0x420
-                0x00103da0                        __data_start = .
+.data           0x00103f60      0x420
+                0x00103f60                        __data_start = .
  *(.data)
- .data          0x00103da0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- .data          0x00103da0        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00103da0                g_screenbuf
-                0x00103da4                g_tabw
-                0x00103da8                hex_chars
- .data          0x00103dac        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .data          0x00103dac       0x1e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
-                0x00103dac                g_gdt
-                0x00103dc4                g_gdtdescriptor
- *fill*         0x00103dca       0x16 
- .data          0x00103de0       0x80 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
- .data          0x00103e60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
- .data          0x00103e60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
- .data          0x00103e60        0x6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00103e60                g_idtdescriptor
- *fill*         0x00103e66       0x1a 
- .data          0x00103e80      0x260 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
-                0x00103ee0                scancode1_kc_strings
-                0x001040d8                scancode1_lookup
- .data          0x001040e0       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
- .data          0x00104140        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- .data          0x00104140        0x2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
-                0x00104140                _ZN10pic_driver6a_maskE
- .data          0x00104142        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- *fill*         0x00104142       0x1e 
- .data          0x00104160       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .data          0x001041c0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .data          0x001041c0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+ .data          0x00103f60        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+ .data          0x00103f60        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00103f60                g_screenbuf
+                0x00103f64                g_tabw
+                0x00103f68                hex_chars
+ .data          0x00103f6c        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .data          0x00103f6c       0x1e /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+                0x00103f6c                g_gdt
+                0x00103f84                g_gdtdescriptor
+ *fill*         0x00103f8a       0x16 
+ .data          0x00103fa0       0x80 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ .data          0x00104020        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
+ .data          0x00104020        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .data          0x00104020        0x6 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00104020                g_idtdescriptor
+ *fill*         0x00104026       0x1a 
+ .data          0x00104040      0x260 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
+                0x001040a0                scancode1_kc_strings
+                0x00104298                scancode1_lookup
+ .data          0x001042a0       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .data          0x00104300        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ .data          0x00104300        0x2 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+                0x00104300                _ZN10pic_driver6a_maskE
+ .data          0x00104302        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ *fill*         0x00104302       0x1e 
+ .data          0x00104320       0x60 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .data          0x00104380        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .data          0x00104380        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.rodata         0x001041c0     0x10a8
-                0x001041c0                        __rodata_start = .
+.rodata         0x00104380     0x11e0
+                0x00104380                        __rodata_start = .
  *(.rodata)
- .rodata        0x001041c0        0xe /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- *fill*         0x001041ce        0x2 
- .rodata        0x001041d0       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x001041d0                SCR_W
-                0x001041d4                SCR_H
- *fill*         0x00104281        0x3 
- .rodata        0x00104284      0x33f /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
- *fill*         0x001045c3       0x1d 
- .rodata        0x001045e0      0x837 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
- *fill*         0x00104e17        0x1 
- .rodata        0x00104e18      0x30c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
- .rodata        0x00105124       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- *fill*         0x00105137        0x1 
- .rodata        0x00105138      0x130 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .rodata        0x00104380        0xe /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+ *fill*         0x0010438e        0x2 
+ .rodata        0x00104390       0xb1 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00104390                SCR_W
+                0x00104394                SCR_H
+ *fill*         0x00104441        0x3 
+ .rodata        0x00104444      0x33f /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+ *fill*         0x00104783       0x1d 
+ .rodata        0x001047a0      0x96d /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
+ *fill*         0x0010510d        0x3 
+ .rodata        0x00105110      0x30c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .rodata        0x0010541c       0x13 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ *fill*         0x0010542f        0x1 
+ .rodata        0x00105430      0x130 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
 
-.eh_frame       0x00105268      0x5e8
- .eh_frame      0x00105268       0xb8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
- .eh_frame      0x00105320      0x1d8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
- .eh_frame      0x001054f8       0x38 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- .eh_frame      0x00105530      0x13c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
- .eh_frame      0x0010566c       0x78 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
- .eh_frame      0x001056e4       0x94 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .eh_frame      0x00105778       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .eh_frame      0x001057dc       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+.eh_frame       0x00105560      0x64c
+ .eh_frame      0x00105560      0x11c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
+ .eh_frame      0x0010567c      0x1d8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .eh_frame      0x00105854       0x38 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ .eh_frame      0x0010588c      0x13c /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+ .eh_frame      0x001059c8       0x78 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+ .eh_frame      0x00105a40       0x94 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .eh_frame      0x00105ad4       0x64 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .eh_frame      0x00105b38       0x74 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
 
-.bss            0x00105860      0xcbc
-                0x00105860                        __bss_start = .
+.bss            0x00105bc0      0xcbc
+                0x00105bc0                        __bss_start = .
  *(.bss)
- .bss           0x00105860        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
- .bss           0x00105860        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
-                0x00105860                g_screenx
-                0x00105864                g_screeny
- .bss           0x00105868        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
- .bss           0x00105868        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
- *fill*         0x00105868       0x18 
- .bss           0x00105880      0x400 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
-                0x00105880                g_isr_handlers
- .bss           0x00105c80        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
- .bss           0x00105c80        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
- .bss           0x00105c80      0x800 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
-                0x00105c80                g_idt
- .bss           0x00106480       0x10 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
-                0x00106480                _ZN12ps2_keyboard9firstreadE
- .bss           0x00106490        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
- .bss           0x0010649c        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
- .bss           0x0010649c       0x10 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
-                0x0010649c                _ZN10pic_driver10a_auto_eoiE
- *fill*         0x001064ac       0x14 
- .bss           0x001064c0       0x50 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
-                0x001064c0                _ZN10irq_driver13a_irqhandlersE
- .bss           0x00106510        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
- .bss           0x0010651c        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
- .bss           0x0010651c        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
-                0x0010651c                        __end = .
+ .bss           0x00105bc0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/util/error.obj
+ .bss           0x00105bc0        0x8 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/stdio.obj
+                0x00105bc0                g_screenx
+                0x00105bc4                g_screeny
+ .bss           0x00105bc8        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/std/string.obj
+ .bss           0x00105bc8        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/gdt.obj
+ *fill*         0x00105bc8       0x18 
+ .bss           0x00105be0      0x400 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isr.obj
+                0x00105be0                g_isr_handlers
+ .bss           0x00105fe0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/io.obj
+ .bss           0x00105fe0        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/isrs_generated.obj
+ .bss           0x00105fe0      0x800 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/c/./include_src/i686/idt.obj
+                0x00105fe0                g_idt
+ .bss           0x001067e0       0x18 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/keyboard/ps2_keyboard.obj
+                0x001067e0                _ZN12ps2_keyboard11inner_queue5queueE
+                0x001067e6                _ZN12ps2_keyboard11inner_queue4sizeE
+                0x001067e7                _ZN12ps2_keyboard9firstreadE
+                0x001067e8                _ZN12ps2_keyboard5stateE
+                0x001067e9                _ZN12ps2_keyboard11lookuplevelE
+                0x001067ea                _ZN12ps2_keyboard12other_inputsE
+ .bss           0x001067f8        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/ps2/ps2_driver.obj
+ .bss           0x00106804        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/hal/hal.obj
+ .bss           0x00106804       0x10 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/pic.obj
+                0x00106804                _ZN10pic_driver10a_auto_eoiE
+ *fill*         0x00106814        0xc 
+ .bss           0x00106820       0x50 /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./include_src/i686/irq.obj
+                0x00106820                _ZN10irq_driver13a_irqhandlersE
+ .bss           0x00106870        0xc /home/zaccaria/Scrivania/Proj/ZerOS/build/kernel/cpp/./main.obj
+ .bss           0x0010687c        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_udivdi3.o)
+ .bss           0x0010687c        0x0 /home/zaccaria/Scrivania/Proj/ZerOS/toolchain/i686-elf/lib/gcc/i686-elf/14.2.0/libgcc.a(_umoddi3.o)
+                0x0010687c                        __end = .
 OUTPUT(/home/zaccaria/Scrivania/Proj/ZerOS/build/kernel.bin binary)
 
 .debug_info     0x00000000     0x23a8

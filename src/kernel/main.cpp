@@ -40,7 +40,7 @@ extern "C" void __attribute__((section(".entry"))) start(uint16_t boot_drive){
  
     pic_driver::disable();
     ps2_keyboard ps2(PS2_1ST_CONTROLLER);
-
-
+    
+    
     end();
 }
