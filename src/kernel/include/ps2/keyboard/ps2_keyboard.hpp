@@ -55,8 +55,6 @@ typedef enum {
     PS2KEY_STATE_OTHER_INPUTS
 } ps2_key_states;
 
-#define KEYBOARD_BUFFER_SIZE 6
-
 class ps2_keyboard : public ps2_driver {
     private:
         uint16_t devtype;
@@ -66,21 +64,6 @@ class ps2_keyboard : public ps2_driver {
         static uint8_t lookuplevel;
         static uint8_t other_inputs;
 
-        class inner_queue {
-            private:
-                static uint8_t queue[KEYBOARD_BUFFER_SIZE];
-                static uint8_t size;
-
-            public:
-                static void pushcode(uint8_t p_code);
-                static uint8_t popcode();
-                static void clearcodes();
-        };
-
-        /**
-         * TODO: static queue;
-         */
-
     public:
         ps2_keyboard(int p_port_no);
 
@@ -88,6 +71,5 @@ class ps2_keyboard : public ps2_driver {
         void set_scancodeset(uint8_t p_set);
 
         static void int_handler(registers* regs);
-        static void handle_codes();
 };
 

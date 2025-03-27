@@ -1,5 +1,6 @@
 #include<ps2/keyboard/ps2_keyboard.hpp>
 #include<ps2/keyboard/scancode.h>
+#include<hal/peripherals/keyboard/keystate_map.hpp>
 #include<i686/io.h>
 #include<stddef.h>
 #include<i686/pic.hpp>
@@ -9,41 +10,6 @@
 #include<util/array.hpp>
 
 #include<std/string.h>
-
-uint8_t ps2_keyboard::inner_queue::queue[]={};
-uint8_t ps2_keyboard::inner_queue::size=0;
-
-void ps2_keyboard::inner_queue::pushcode(uint8_t p_code){
-    if(size==KEYBOARD_BUFFER_SIZE){
-        terminate("Keyboard queue is full.This means the pushcode() procedure was called inappropriately by some parts of the program. Terminating.");
-        return;
-    }
-
-    queue[size]=p_code;
-    size++;
-}
-
-uint8_t ps2_keyboard::inner_queue::popcode(){
-    if(size==0){
-        terminate("Keyboard queue is empty. This means the popcode() procedure was called inappropriately by some parts of the program. Terminating.");
-        return -1;
-    }
-
-    uint8_t retval=queue[size-1];
-    for(int i=0; i<size-1; i++){
-        queue[i]=queue[i+1];
-    }
-    size--;
-
-    return retval;
-}
-
-void ps2_keyboard::inner_queue::clearcodes(){
-    memset(queue, 0, KEYBOARD_BUFFER_SIZE);
-    size=0;
-}
-
-// ================================================
 
 bool ps2_keyboard::firstread=false;
 uint8_t ps2_keyboard::state=PS2KEY_STATE_DEFAULT;
@@ -149,18 +115,14 @@ void ps2_keyboard::int_handler(registers* regs){
                 case KC_OP_RELEASED:
                     lookuplevel=0;
                     state=PS2KEY_STATE_DEFAULT;
-                    /**
-                     * TODO: set pressing flag to false
-                     */
+                    keystate_map::release(scancode1_lookup[lookuplevel][scancode].keycode);
                     break;
 
                 case KC_OP_PRESSED:
                     printf("%s", scancode1_kc_strings[scancode1_lookup[lookuplevel][scancode].keycode]);
                     lookuplevel=0;
                     state=PS2KEY_STATE_DEFAULT;
-                    /**
-                     * TODO: set pressing flag to true
-                     */
+                    keystate_map::press(scancode1_lookup[lookuplevel][scancode].keycode);
 
                     break;
 

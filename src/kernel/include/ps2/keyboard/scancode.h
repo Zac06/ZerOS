@@ -3,15 +3,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define LOOKUP_SIZE 256
-
 struct scantokey_map
 {
     uint8_t operation; // press/release/nextlookup/invalid scancode
     uint8_t keycode;
 };
 
-const char* scancode1_kc_strings[] = {
+static const char* scancode1_kc_strings[] = {
     "INVALID",
     "ESC",
     "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
@@ -196,7 +194,7 @@ typedef enum
 /**
  * Lookup table for the first set. If 0, means "go to the next table."
  */
-const scantokey_map scancode1_lookup1[] = {
+static const scantokey_map scancode1_lookup1[] = {
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_PRESSED, KC_ESC},
     {KC_OP_PRESSED, KC_1},
@@ -426,7 +424,7 @@ const scantokey_map scancode1_lookup1[] = {
 
 };
 
-const scantokey_map scancode1_lookup2[]={
+static const scantokey_map scancode1_lookup2[]={
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
     {KC_OP_INVALIDSC, KC_INVALID},
@@ -739,7 +737,7 @@ const scantokey_map scancode1_lookup2[]={
 
 };
 
-const scantokey_map* scancode1_lookup[]={
+static const scantokey_map* scancode1_lookup[]={
     scancode1_lookup1,
     scancode1_lookup2
 };
