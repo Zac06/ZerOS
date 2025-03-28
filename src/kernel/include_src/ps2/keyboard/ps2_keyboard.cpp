@@ -111,14 +111,14 @@ void ps2_keyboard::int_handler(registers* regs){
         case PS2KEY_STATE_DEFAULT:
         case PS2KEY_STATE_NEXTLOOKUP:
             
-            switch(scancode1_lookup[lookuplevel][scancode].operation&KC_OP_MASK){
-                case KC_OP_RELEASED:
+            switch(scancode1_lookup[lookuplevel][scancode].operation&SC_OP_MASK){
+                case SC_OP_RELEASED:
                     lookuplevel=0;
                     state=PS2KEY_STATE_DEFAULT;
                     keystate_map::release(scancode1_lookup[lookuplevel][scancode].keycode);
                     break;
 
-                case KC_OP_PRESSED:
+                case SC_OP_PRESSED:
                     printf("%s", scancode1_kc_strings[scancode1_lookup[lookuplevel][scancode].keycode]);
                     lookuplevel=0;
                     state=PS2KEY_STATE_DEFAULT;
@@ -126,7 +126,7 @@ void ps2_keyboard::int_handler(registers* regs){
 
                     break;
 
-                case KC_OP_NEXTLOOKUP:
+                case SC_OP_NEXTLOOKUP:
                     lookuplevel++;
                     state=PS2KEY_STATE_NEXTLOOKUP;
                     if(lookuplevel>=arrsize(scancode1_lookup)){
@@ -134,7 +134,7 @@ void ps2_keyboard::int_handler(registers* regs){
                     }
                     break;
 
-                case KC_OP_INVALIDSC:
+                case SC_OP_INVALIDSC:
                     //printf("INVALIDSC\n");
                     lookuplevel=0;
                     state=PS2KEY_STATE_DEFAULT;
@@ -165,46 +165,4 @@ void ps2_keyboard::int_handler(registers* regs){
     
     }
 
-    /*
-    if( scancode1_lookup[0][scancode].operation&KC_OP_MASK!=KC_OP_NEXTLOOKUP&&
-        scancode1_lookup[0][scancode].operation&KC_OP_MASK!=KC_OP_INVALIDSC){
-            handle_codes();
-        }
-
-    const int size=arrsize(scancode1_lookup);
-    int otherinps;
-
-    for(int i=0; i<size; i++){
-        uint8_t scancode=i686_inb(PS2_DATA_PORT);
-
-        switch(scancode1_lookup[i][scancode].operation&KC_OP_MASK){
-            case KC_OP_RELEASED:
-                //printf("%s", scancode1_kc_strings[scancode1_lookup[i][scancode].keycode]);
-                //pic_driver::unmask(1);
-                return;
-                break;
-
-            case KC_OP_PRESSED:
-                printf("%s", scancode1_kc_strings[scancode1_lookup[i][scancode].keycode]);
-                //pic_driver::unmask(1);
-                return;
-                break;
-
-            case KC_OP_NEXTLOOKUP:
-                break;
-
-            case KC_OP_INVALIDSC:
-                printf("INVALIDSC\n");
-                //pic_driver::unmask(1);
-                return;
-                break;
-        }
-
-        otherinps=(scancode1_lookup[i][scancode].operation>>4);
-        //printf("Other inputs: %d", otherinps);
-        for(int j=0; j<otherinps; j++){
-            i686_inb(PS2_DATA_PORT);
-            printf("Extra input %d", j);
-        }
-    }*/
 }
