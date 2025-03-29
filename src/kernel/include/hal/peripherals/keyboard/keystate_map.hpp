@@ -5,6 +5,8 @@
 class keystate_map {
     private:
         static bool keystates[KC_ENUM_SIZE];
+        static bool capslocktoggle;
+        static bool numlocktoggle;
 
     public:
         static void init();

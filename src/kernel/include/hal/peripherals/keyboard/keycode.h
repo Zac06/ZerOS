@@ -2,36 +2,45 @@
 
 static const char* scancode1_kc_strings[] = {
     "INVALID",
-    "ESC",
-    "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
-    "-", "=", "\b", "\t",
-    "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
-    "[", "]", "\n", "LCTRL",
-    "A", "S", "D", "F", "G", "H", "J", "K", "L",
-    ";", "'", "`", "LSHIFT", "\\",
-    "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/",
-    "RSHIFT", "KP_*", "LALT", " ", "CAPSLOCK",
+
+    "LCTRL", "LSHIFT", "RSHIFT", "LALT", "CAPSLOCK", "NUMLOCK", "SCROLLLOCK", "RCTRL", "ALTGR",
+    "LAST_MOD",
+    "ESC", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "\b", "\t",
+    "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\n",
+    "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'", "`",
+    "\\", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/",
+    "KP_*",
+    "SPACE",
     "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10",
-    "NUMLOCK", "SCROLLLOCK", // this two particular lines  
-    "KP_7", "KP_8", "KP_9", "KP_-",
-    "KP_4", "KP_5", "KP_6", "KP_+",
-    "KP_1", "KP_2", "KP_3", "KP_0", "KP_.",
+    "KP_7", "KP_8", "KP_9", "KP_-", "KP_4", "KP_5", "KP_6", "KP_+", "KP_1", "KP_2", "KP_3", "KP_0", "KP_.",
     "F11", "F12",
-    "MUL_PREV", "MUL_NEXT",
+    "MUL_PREV_TRACK", "MUL_NEXT_TRACK",
     "KP_ENTER",
-    "RCTRL", "MUL_MUTE", "MUL_CALC", "MUL_PLAY", "MUL_STOP", "MUL_VOLDOWN", "MUL_VOLUP", "MUL_WWWHOME",
-    "KP_/", "ALTGR", "HOME", "UP", "PAGE_UP",
-    "LEFT", "RIGHT", "END", "DOWN", "PAGE_DOWN", "INSERT", "DEL",
-    "LGUI", "RGUI", "APPS",
-    "ACPI_POWER", "ACPI_SLEEP", "ACPI_WAKE",
-    "MUL_SEARCH", "MUL_FAV", "MUL_REFRESH", "MUL_STOP",
-    "MUL_FORWARD", "MUL_BACK", "MUL_MYPC", "MUL_EMAIL", "MUL_MEDIASEL",
-    "PRNTSCR", "PAUSE"
+    "MUL_MUTE", "MUL_CALC", "MUL_PLAY", "MUL_STOP", "MUL_VOLDOWN", "MUL_VOLUP", "MUL_WWWHOME", "KP_/",
+    "HOME", "CUR_UP", "PAGE_UP", "CUR_LEFT", "CUR_RIGHT", "END", "CUR_DOWN", "PAGE_DOWN", "INSERT", "DEL",
+    "LGUI", "RGUI", "APPS", "ACPI_POWER", "ACPI_SLEEP", "ACPI_WAKE", "MUL_WWWSEARCH", "MUL_WWWFAV",
+    "MUL_WWWREFRESH", "MUL_WWWSTOP", "MUL_WWWFORWARD", "MUL_WWWBACK", "MUL_MYPC", "MUL_EMAIL", "MUL_MEDIASEL",
+    "PRNTSCR", "PAUSEBREAK",
+
+    "ENUM_SIZE"
 };
+
 
 typedef enum
 {
     KC_INVALID = 0,
+
+    KC_LCTRL,
+    KC_LSHIFT,
+    KC_RSHIFT,
+    KC_LALT,
+    KC_CAPSLOCK,
+    KC_NUMLOCK,
+    KC_SCROLLLOCK,
+    KC_RCTRL,
+    KC_ALTGR,
+
+    KC_LAST_MOD,
 
     KC_ESC,
     KC_1,
@@ -61,7 +70,7 @@ typedef enum
     KC_OPEN_SQUAREBRACKET,
     KC_CLOSE_SQUAREBRACKET,
     KC_ENTER,
-    KC_LCTRL,
+    
     KC_A,
     KC_S,
     KC_D,
@@ -74,7 +83,7 @@ typedef enum
     KC_SEMICOLON,
     KC_SINGLEQUOTE,
     KC_BACKTICK,
-    KC_LSHIFT,
+    
     KC_BACKSLASH,
     KC_Z,
     KC_X,
@@ -86,11 +95,11 @@ typedef enum
     KC_COMMA,
     KC_DOT,
     KC_SLASH,
-    KC_RSHIFT,
+    
     KC_KP_STAR,
-    KC_LALT,
+    
     KC_SPACE,
-    KC_CAPSLOCK,
+    
     KC_F1,
     KC_F2,
     KC_F3,
@@ -101,8 +110,7 @@ typedef enum
     KC_F8,
     KC_F9,
     KC_F10,
-    KC_NUMLOCK,
-    KC_SCROLLLOCK,
+    
     KC_KP_7,
     KC_KP_8,
     KC_KP_9,
@@ -125,7 +133,6 @@ typedef enum
 
     KC_KP_ENTER,
 
-    KC_RCTRL,
     KC_MUL_MUTE,
     KC_MUL_CALC,
     KC_MUL_PLAY,
@@ -134,7 +141,7 @@ typedef enum
     KC_MUL_VOLUP,
     KC_MUL_WWWHOME,
     KC_KP_SLASH,
-    KC_ALTGR,
+    
     KC_HOME,
     KC_CUR_UP,
     KC_PAGE_UP,

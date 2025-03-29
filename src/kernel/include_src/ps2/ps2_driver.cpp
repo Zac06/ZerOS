@@ -238,7 +238,6 @@ const ps2_dev_type* ps2_driver::identify(){
     }
 
     uint16_t type=i686_inb(PS2_DATA_PORT);
-    
     for(i=0; i<arrsize(devtypes); i++){
         //printf("READBYTES: 0x%x\n", type);
         //printf("DEVTYPE[i]: 0x%x\n", devtypes[i].id);

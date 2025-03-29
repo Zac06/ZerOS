@@ -15,6 +15,7 @@ bool ps2_keyboard::firstread=false;
 uint8_t ps2_keyboard::state=PS2KEY_STATE_DEFAULT;
 uint8_t ps2_keyboard::lookuplevel=0;
 uint8_t ps2_keyboard::other_inputs=0;
+keyboard_layout ps2_keyboard::kl=keyboard_layout(KB_LAYOUT_en_US);
 
 ps2_keyboard::ps2_keyboard(int p_port_no)
     :ps2_driver(p_port_no)
@@ -119,10 +120,23 @@ void ps2_keyboard::int_handler(registers* regs){
                     break;
 
                 case SC_OP_PRESSED:
-                    printf("%s", scancode1_kc_strings[scancode1_lookup[lookuplevel][scancode].keycode]);
+                    //printf("%s", scancode1_kc_strings[scancode1_lookup[lookuplevel][scancode].keycode]);
                     lookuplevel=0;
                     state=PS2KEY_STATE_DEFAULT;
                     keystate_map::press(scancode1_lookup[lookuplevel][scancode].keycode);
+
+                    char c;
+                    if(keystate_map::ispressed(KC_LSHIFT)||keystate_map::ispressed(KC_RSHIFT)){
+                        c=kl.getval(scancode1_lookup[lookuplevel][scancode].keycode, KC_LSHIFT);
+                    }else if(keystate_map::ispressed(KC_CAPSLOCK)){
+                        c=kl.getval(scancode1_lookup[lookuplevel][scancode].keycode, KC_CAPSLOCK);
+                    }else{
+                        c=kl.getval(scancode1_lookup[lookuplevel][scancode].keycode);
+                    }
+
+                    if(c!=0){
+                        printf("%c", c);
+                    }
 
                     break;
 
