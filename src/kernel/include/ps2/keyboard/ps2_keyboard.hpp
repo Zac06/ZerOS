@@ -6,6 +6,8 @@
 
 #include<hal/peripherals/keyboard/keyboard_layout.hpp>
 #include<hal/peripherals/keyboard/layouts/all.h>
+#include<hal/peripherals/keyboard/keyboard.hpp>
+
 
 typedef enum {
     PS2KEY_SETLED                               =0xed,
@@ -67,7 +69,8 @@ class ps2_keyboard : public ps2_driver {
         static uint8_t lookuplevel;
         static uint8_t other_inputs;
 
-        static keyboard_layout kl;
+        //static keyboard_layout kl;
+        static keyboard* upper_layer;
 
     public:
         ps2_keyboard(int p_port_no);
